@@ -1,2 +1,2 @@
 # uol
-GitHub repo for PhD research
+GitHub repo for my PhD research

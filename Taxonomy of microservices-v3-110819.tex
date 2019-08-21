@@ -17,7 +17,9 @@
 
 % Main document
 % ---
+
 \begin{document}
+\selectlanguage{english}
 % Set up the maketitle command
 \author{Georges Leschener M. Essomba}
 \title{Taxonomy of Microservices}
@@ -117,7 +119,7 @@ The following inclusion-exclusion criteria were applied:
 The diagram shown in figure 1 below depicts the different steps undertaken as part of the search strategy for this study. We basically started by running a search based on our selected keywords and the date range criteria. This produced an initial list of 1200 results. We then ran a number of iterations on the list of that list to further exclude duplicates, and false positives (papers that matched our keywords but did not really focus on microservices. The way we arrived at that conclusion was from reading the abstract (and the conclusion for the papers that did not provide sufficient information in the abstract). In the end we had a list of 20 papers shown in table 1 below that we found relevant for our study which we used for the literature review.
 
 
-\begin{figure}
+\begin{figure}[h!]
 \includegraphics{searchstrategy.png}
 \caption{Diagram of the search strategy.}
 \end{figure}
@@ -144,7 +146,7 @@ We then did some filtering based on a number of inclusion/exclusion criteria to 
 
 \begin{itemize} 
 
-\item \textbf{The first criterion} targets those microservices that have been utilised at least once as a component providing a functionality as part of a microservice-based application. Also considered falling into the same criteria are microservices that have already been used as part of a service composition process involving other microservices with a goal to provide a composed service. Service composition is process by which microservices are stitched together perhaps with or without some glue code (depending on their design and the target output application) in order to provide one or many functionalities. This process is believed to significantly reduces development time in that it helps leverage components that have already been built (Namoun et al., 2010).
+\item \textbf{The first criterion} targets those microservices that have been utilized at least once as a component providing a functionality as part of a microservice-based application. Also considered falling into the same criteria are microservices that have already been used as part of a service composition process involving other microservices with a goal to provide a composed service. Service composition is process by which microservices are stitched together perhaps with or without some glue code (depending on their design and the target output application) in order to provide one or many functionalities. This process is believed to significantly reduces development time in that it helps leverage components that have already been built (Namoun et al., 2010).
 
 
 \item \textbf{The second criterion} that was used to further refine our results was to select those microservices that could also be used as stand-alone to provide a given functionality in what could be referred to as single-microservice application. The rationale behind microservices as remark Dragoni et al. (2017) is to break down a monolithic application into small loose components that are independent from each other in terms of the technologies they are built on, how they are deployed and maintained. Microservices that do not provide a clear function when used in silo have been excluded as they were classified as being just an abstract piece of code that could only be used when associated with other pieces of code in the form of a microservice or perhaps only part of it. One of the advantages such capability provides is the opportunity to understand how microservices are deployed and whether or not they are only supported on certain platforms. In other words, it helps answer the question of whether the microservice is platform-dependent or whether it is platform-agnostic meaning it could be deployed on any platform.
@@ -203,7 +205,7 @@ In table 4 below we zoom in on programming languages and data types dimensions, 
 
 The other dimensions the framework looks at are the dependencies as well as compatibilities, in other words what are the microservices that would require one or more other microservices in order to fulfil a given function (dependency) or are there some microservices that cannot work together for one reason or another (compatibility).
 
-\begin{figure}
+\begin{figure}[h!]
 \includegraphics{taxonomydiagram.png}
 \caption{Taxonomy of Microservices.}
 \end{figure}
@@ -215,12 +217,12 @@ As shown in figure 2 above, the taxonomy is made of functional and non-functiona
 
 \begin{itemize}
 
-\item {\bfseries Deployment}
+\item \textbf{Deployment}
 
 
 This dimension indicates whether the microservices can be deployed and run on a server located in a data centre on-premise refer to as “local” in the diagram. Or whether, the microservices needs to be run in the cloud which is further subdivided into private, public and hybrid type. Also, for the deployment dimension, microservices could be further classified based on the type of compute service used to run them including physical, virtual machine or inside a container such as docker or kubernetes, or in a dynamically powered server by an event also known as serverless.
 
-\item {\bfseries Technology}
+\item \textbf{Technology}
 
 From a technology standpoint, microservices can be classified based on the type of programming language that they are developed on. For instance, Java-based or C++ microservices for object-oriented types, JavaScript for scripting language and so on. 
 
@@ -234,6 +236,7 @@ Another key technology dimension for microservices is the type of data that is p
 
 The other technology dimension that the framework proposes using for classifying microservices is security and for that we’ve identified four categories including microservices using client side certificates and the ones using server side certificates on one hand, and on the other hand microservices using some kind of local directory such as Microsoft Active directory or LDAP to authenticate users or applications and microservices using identify federation for authenticating users which could be based on technologies such as SAML, OAuth or OpenID.
 
+\end{itemize}
 \section{Description of the taxonomy}
 
 
@@ -308,19 +311,19 @@ While we have demonstrated that the methodology used in this research has led to
 \begin{itemize}
 
 
-\item \textbf  {A very large number of microservices}
+\item \textbf{A very large number of microservices}
 
 One of these limitations stems from the sheer number of microservices that are available today, a number that keeps on increasing every day as new microservices are being built by software developers. That begs the question as to whether the sample we selected for this study is representative enough of all the microservices that are available in the industry today. While we feel that our method was rigorous enough to account for all possibilities in terms of microservices attributes (common and specifics), we cannot exclude totally the possibility of us missing out on some which perhaps could have led to slightly different results. 
 
-\item \textbf  {No access to proprietary or private microservices}
+\item \textbf{No access to proprietary or private microservices}
 
 In our study we did not include microservices that are proprietary and that are not publicly accessible. While we expect such microservices to share some common attributes with those that are made available to the general public, we have no knowledge of their specifics in terms of which technologies they are designed with, how they are deployed, what functions they fulfil and whether or not they can run on any environment. All these questions are very interesting ones that perhaps would need exploring as part of a new study.
 
-\item \textbf  {Too many technology options}
+\item \textbf{Too many technology options}
 
 This one is more of a challenge than a limitation to our study. One of the advantages of microservices is their flexibility in terms of the freedom developers have to choose which programming language they want to use when building microservices. Dragoni et al. (2017) acknowledge the value that microservices bring with such flexibility as it provides users with more options to choose from and more flexibility in terms of the technology they can use to build applications. Singleton (2106) also discuss in his paper “The economics of microservices” talks about the flexibility that software engineers have in choosing the technology they want for building microservice-based applications acknowledging that it does provide a number of advantages including reducing the costs of developing and maintaining software while increasing the speed at which software can be released. The downside of that which proved to be a real challenge in our study is that trying to classify microservices by technology dimensions is very cumbersome with so many options to choose from given the plethora of technologies that is available in the industry today. If we take for instance programming languages, trying to classify microservices by programming languages, could easily lead to several hundreds of options. And even by trying to group them into family of programming languages, that is languages that use the same approaches such as object-oriented, scripting or procedural languages type to name but a few we would still end up with several options. 
 
-\item \textbf {The precision and efficiency of our search strategy}
+\item \textbf{The precision and efficiency of our search strategy}
 
 The keywords for searching our target microservices as well as the repositories and libraries searched should have enabled us to cover a broader scope. While we looked into the most popular academic and scientific libraries and journals, there is possibility that we missed a completely different type of microservices such as microservices that are not indexed with our chosen keywork which potentially could have produced different results. There is also a question mark on whether we were able to capture all the functional characteristics especially with domain specific microservices such as the one providing Artificial Intelligence, IoT or Blockchain functions or even tailored to specific industry such as healthcare, financial or retail. If we take look at microservices functions from a perspective of possible HTTP methods that can be used by web services it becomes obvious that the DELETE method has not been accounted for which may indicate that we might have missed other functions with our method.
 
@@ -346,7 +349,7 @@ While this taxonomy could be regarded as a significant step forward for helping 
 
 
 
-\item Baresi, L., Garriga, M., \& Renzis, A. D. (2017). Microservices Identification Through Interface Analysis. Service-Oriented and Cloud Computing Lecture Notes in Computer Science,19-33. doi:10.1007/978-3-319-67262-5_2
+\item Baresi, L., Garriga, M., \& Renzis, A. D. (2017). Microservices Identification Through Interface Analysis. Service-Oriented and Cloud Computing Lecture Notes in Computer Science,19-33.
 
 
 
@@ -371,7 +374,7 @@ While this taxonomy could be regarded as a significant step forward for helping 
 \item Garriga M. (2018) Towards a Taxonomy of Microservices Architectures. In: Cerone A., Roveri M. (eds) Software Engineering and Formal Methods. SEFM 2017. Lecture Notes in Computer Science, vol 10729. Springer, Cham
 
 
-\item Hamzehloui, M. S., Sahibuddin, S., & Ashabi, A. (2019). A Study on the Most Prominent Areas of Research in Microservices. International Journal of Machine Learning and Computing, 9(2), 242-247. 
+\item Hamzehloui, M. S., Sahibuddin, S., \& Ashabi, A. (2019). A Study on the Most Prominent Areas of Research in Microservices. International Journal of Machine Learning and Computing, 9(2), 242-247. 
 
 
 \item J., Vieira, D., \& Trinta, F. (2019). Greedy Multi-Cloud Selection Approach to Deploy an Application Based on Microservices. 2019 27th Euromicro International Conference on Parallel, Distributed and Network-Based Processing (PDP). 
@@ -389,13 +392,13 @@ Pahl, C., \& Jamshidi, P. (2016). Microservices: A Systematic Mapping Study. Pro
 \item Rademacher, F., Sorgalla, J., Wizenty, P. N., Sachweh, S., \& Zündorf, A. (2018). Microservice architecture and model-driven development. Proceedings of the 19th International Conference on Agile Software Development Companion - XP 18. doi:10.1145/3234152.3234193
 
 
-\item Rademacher, F., Sachweh, S., \& Zündorf, A. (2018). Towards a UML Profile for Domain-Driven Design of Microservice Architectures. Software Engineering and Formal Methods Lecture Notes in Computer Science, 230-245. doi:10.1007/978-3-319-74781-1_17
+\item Rademacher, F., Sachweh, S., \& Zündorf, A. (2018). Towards a UML Profile for Domain-Driven Design of Microservice Architectures. Software Engineering and Formal Methods Lecture Notes in Computer Science, 230-245. 
 
 
 \item S. Newman (February 2015), Building Microservices: Designing Fine-Grained Systems, O'Reilly Media, 1st edition
 
 
-\item S. S., \& Buyya, R. (2018). Failure Management for Reliable Cloud Computing: A Taxonomy, Model and Future Directions. Computing in Science & Engineering, 1-1. doi:10.1109/mcse.2018.2873866
+\item S. S., \& Buyya, R. (2018). Failure Management for Reliable Cloud Computing: A Taxonomy, Model and Future Directions. Computing in Science \& Engineering, 1-1. doi:10.1109/mcse.2018.2873866
 
 
 \item Salah, T., Zemerly, M. J., Yeun, C. Y., Al-Qutayri, M., \& Al-Hammadi, Y. (2016). The evolution of distributed systems towards microservices architecture. 2016 11th International Conference for Internet Technology and Secured Transactions (ICITST). 
@@ -427,9 +430,9 @@ Pahl, C., \& Jamshidi, P. (2016). Microservices: A Systematic Mapping Study. Pro
 \item Yarygina, T., \& Bagge, A. H. (2018). Overcoming Security Challenges in Microservice Architectures. 2018 IEEE Symposium on Service-Oriented System Engineering (SOSE). 
 
 
-\item Zimmermann, O. Computer Science Research & Development (2017) 32: 301. https://doi.org/10.1007/s00450-016-0337-0 
+\item Zimmermann, O. Computer Science Research \& Development (2017) 32: 301. \url{https://doi.org/10.1007/s00450-016-0337-0} 
 
-\end{itemize}
+\end{enumerate}
 
 
 \end{document}

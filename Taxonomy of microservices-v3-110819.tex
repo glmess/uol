@@ -11,6 +11,10 @@
 \usepackage{graphicx} % Add pictures to your document
 \usepackage{listings} % Source code formatting and highlighting
 \usepackage{csquotes}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{booktabs, tabularx}
 
 \usepackage[backend=bibtex,style=verbose-trad2]{biblatex} % Use biblatex package
 \bibliography{quick} % The name of the .bib file (name without .bib)
@@ -124,6 +128,37 @@ The diagram shown in figure 1 below depicts the different steps undertaken as pa
 \caption{Diagram of the search strategy.}
 \end{figure}
 
+\begin{table}[h!]
+  \begin{center}
+ \tiny
+    \begin{tabular}{|l|l|l|l|} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+    \hline
+      1 & \makecell[l]{ Baresi et al. (2017) - Microservices Identification \\ Through Interface Analysis} & 11 & \makecell[l]{Masuda \& Viswanathan (2019) - Direction of \\ Digital IT and Enterprise Architecture}\\
+      \hline
+      2 & \makecell[l]{Jacopo Soldani et al. (2018) - The pains and gains of microservices: \\ A Systematic grey literature review} & 12 & \makecell[l]{Syed \& Fernandez (2018) - A reference architecture \\ for the container ecosystem}\\
+      \hline
+      3 & \makecell[l]{Vural et al. (2017) - A Systematic Literature \\ Review on Microservices} & 13 & \makecell[l]{Pahl \& Jamshidi (2016) - Microservices:  \\ A Systematic Mapping Study}\\
+      \hline
+      4 & \makecell[l]{Tetiana \& Anya (2018) - Overcoming Security Challenges \\ in Microservice Architectures} & 14 & \makecell[l]{Alshuqayran et al. (2016) - A Systematic Mapping Study \\ in Microservice Architecture}\\
+      \hline
+      5 & \makecell[l]{Marquez et al. (2018) - Review of Architectural Patterns and \\ Tactics for Microservices in Academic and Industrial Literature} & 15 & \makecell[l]{Taibi (2018) - Architectural Patterns for Microservices: \\ A Systematic Mapping Study}\\
+      \hline
+      6 & \makecell[l]{Rademacher et al. (2018) - Microservice architecture \\ and model-driven development} & 16 & \makecell[l]{Taherizadeh \& Stankovski (2017) - Auto-scaling Applications in \\ Edge Computing: Taxonomy and Challenges}\\
+      \hline
+      7 & \makecell[l]{Hamzehloui et al. (2019) - A Study on the Most Prominent \\ Areas of Research in Microservices} & 17 & \makecell[l]{Elsayed \& Zulkernine (2018) - A Taxonomy of \\ Security as a Service}\\
+      \hline
+      8 & \makecell[l]{Rademacher et al. (2018) - Towards a UML Profile for \\ Domain-Driven Design of Microservice Architectures} & 18 & \makecell[l]{Salah et al. (2016) - The evolution of distributed systems \\ towards microservices architecture}\\
+      \hline
+      9 & \makecell[l]{Garriga (2018) - Towards a Taxonomy of \\ Microservices Architectures} & 19 & \makecell[l]{Carvalho et al. (2019) - Greedy Multi-Cloud Selection Approach \\ to Deploy an Application Based on Microservices}\\
+      \hline
+      10 & \makecell[l]{Soldani et al. (2018). The pains and gains of microservices: \\ 
+      A Systematic grey literature review} & 20 & \makecell[l]{Gill \& Buyya (2018) - Failure management for reliable \\ cloud computing: A taxonomy, model and future directions}\\
+      \hline
+    \end{tabular}
+        \caption{List of papers included in the study}
+    \label{tab:Table 1}
+  \end{center}
+\end{table}
 
 The second sets of data that we relied on for this study was found by searching repositories for open source software. The two repositories that were selected for the study are Amazon Web Services (AWS) Serverless Application Repository (SAR) and GitHub. These two repositories were selected for a couple of reasons:
 
@@ -173,7 +208,32 @@ This research paper proposes a new framework for a more fine-grained taxonomy of
 
 In this framework we propose using the keywords and map them to specifics function. In the case of the example above we have “real time report” will be mapped to reporting functionality while “all the meeting rooms” will indicate some sort of “querying” functionality. We also have “booked but not utilized” which corresponds to a state would most likely map to a “monitoring” functionality. last but not least the keywords “meeting room” that in itself could constitute a function such as a microservice for meeting rooms management. See table 2 below for details of full mapping.
 
-%Table goes here
+
+\begin{table}[h!]
+  \begin{center}
+  \small
+    \begin{tabular}{|l|l|} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+    \hline
+    \textbf{Keyword} & \textbf{Function}\\
+    \hline
+      \multirow{3}{*}{Looking for} & Search\\
+      & Monitoring\\ 
+      & Ingestion\\
+      \hline
+      Real time & Monitoring/Reporting\\
+      \hline
+      Report & Display/Reporting\\
+      \hline
+      Meeting rooms & Meeting rooms management\\
+      \hline
+      Booked/Not utilized & Monitoring/Search/meeting rooms management\\
+      \hline
+    \end{tabular}
+        \caption{Keywords-to-function mapping table example}
+    \label{tab:Table 2}
+  \end{center}
+\end{table}
+
 
 When we analysed microservices selected for this study it is possible that each one provides a completely different function as part of a microservice-based application. However, most of these functions could be group into the following family of functions:
 
@@ -196,12 +256,36 @@ This approach of classifying microservices by function aligns very much with New
 
 Dragoni et al. (2017) define microservices from technical point of view as independent components conceptually deployed in isolation and equipped with dedicated memory persistence tools (e.g. databases). They argue that since all the components of a microservice architecture are microservices, its distinguishing behaviour derives from the composition and coordination of its components via messages. This indicates that microservices could be classified by the technical attributes of their components. By following that approach, this framework uses technology-related attributes as second type of dimensions for identifying microservices. And that is where our research and the study conducted previously by Garriga (2018) align. Microservices can therefore be classified say based on the programming languages used for their development e.g. scripting, object-oriented, etc. Their communication protocols such as Restful/http(s), MQ, xml, etc. The data store including relational databases, NoSQL databases. The other technical dimensions are data transfer methods (push/pull, sync/async, streaming); the platforms and the deployment method. Table 3 below shows the technical dimensions that we identified as possible options for classifying microservices.
 
-
-%Table 3 goes here
+\begin{table}[h!]
+  \begin{center}
+  \tiny
+    \begin{tabular}{|l|l|l|l|l|l|l|} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+    \hline
+    \textbf{\makecell[l]{Programming \\ Languages}} & \textbf{Communication} & \textbf{\makecell[l]{Data \\ store}} & \textbf{\makecell[l]{Data \\ transfer}} & \textbf{Platform} & \textbf{OS} & \textbf{Deployment}\\
+      \hline
+      \makecell[l]{Scripting \\ Object-oriented \\ Procedural \\ Other} & \makecell[l]{Restful/http \\ MQ \\ RPC \\ XML} & \makecell[l]{Relational DB \\ NoSQL DB \\ Graph \\ Object \\ Flat files} & \makecell[l]{Push \\ Pull \\ Synch \\ Asynch \\ Streaming} & \makecell[l]{Virtual machines \\ Physical servers \\ Containers \\ Serverless} & \makecell[l]{Windows \\ Linux \\ Other} & \makecell[l]{Public cloud\\ Private cloud \\ On-premise \\ Hybrid}\\
+      \hline
+    \end{tabular}
+        \caption{Microservices technical dimensions}
+    \label{tab:Table 3}
+  \end{center}
+\end{table}
 
 In table 4 below we zoom in on programming languages and data types dimensions, and we see that it is possible to further classify microservices by programming language sub-dimensions including Python, JavaScript, PHP, Go, Ruby, html, C\#, Java and the type of data being manipulated such as text, video or voice.
 
-%Table 4 goes here
+\begin{table}[h!]
+  \begin{center}
+    \begin{tabular}{|l|l|} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+    \hline
+    \textbf{\makecell[l]{Programming \\ language}} & \textbf{Data type}\\
+      \hline
+      \makecell[l]{Python \\ Javascript \\ Java \\ PHP \\ Go \\ HTML \\ C\#} & \makecell[l]{Text \\ Numbers \\ Videos \\ Images \\ Voice \\ Mixed \\ Other} \\     
+       \hline
+    \end{tabular}
+        \caption{Programming languages \& Data types}
+    \label{tab:Table 4}
+  \end{center}
+\end{table}
 
 The other dimensions the framework looks at are the dependencies as well as compatibilities, in other words what are the microservices that would require one or more other microservices in order to fulfil a given function (dependency) or are there some microservices that cannot work together for one reason or another (compatibility).
 
@@ -211,7 +295,7 @@ The other dimensions the framework looks at are the dependencies as well as comp
 \end{figure}
 
 
-As shown in figure 2 above, the taxonomy is made of functional and non-functional dimensions. The boxes on the left side are the function types that basically serves for the classification of microservices. On the right side we have the non-functional dimensions which will be weighted to help determine which function(s) type(s) a microservice fits into. For instance, for microservices designed to fulfil a logging function, it is expected that the key component would be a data store and possibly flat files or some object store for storing log files, and as such those dimensions should carry the highest weight. In the next section we discuss both sets of dimensions (non-functional and functional) in more details.
+As shown in figure 2 below, the taxonomy is made of functional and non-functional dimensions. The boxes on the left side are the function types that basically serves for the classification of microservices. On the right side we have the non-functional dimensions which will be weighted to help determine which function(s) type(s) a microservice fits into. For instance, for microservices designed to fulfil a logging function, it is expected that the key component would be a data store and possibly flat files or some object store for storing log files, and as such those dimensions should carry the highest weight. In the next section we discuss both sets of dimensions (non-functional and functional) in more details.
 
 \subsubsection{Non-functional dimensions}
 
@@ -242,17 +326,26 @@ The other technology dimension that the framework proposes using for classifying
 
 In our framework microservices are classified based on two main dimensions that is functional and non-functional dimensions. For a fine-grained classification we use a weighting mechanism of non-functional dimensions to be able to classify microservices by type of functionality tor functionalities they are designed to provide e.g. Logging, Authentication. The weighting ranges from between 0 and 5 with zero being the lowest weight meaning that any dimension with a weight of zero has very little or no influence in the classification by functionality of the microservice. The deployment dimension carries the lowest weight while a weighting of 5 means the dimension carries the highest weight which indicates that the dimension is the most important one in helping classifying microservices with that particular dimension. For example, an authentication microservice will have a weight of 1 for the deployment dimension for most microservices tend to be platform-agnostic given that they can run both on premise and in the cloud either by installing them directly on a server instance or by deploying inside a container. Table 5 below shows how weighting is applied to non-functional dimensions.
 
-%Table 5 goes here
+\begin{figure}[h!]
+\includegraphics{table5.png}
+\caption{Weighting of non-functional dimensions: Deployment.}
+\end{figure}
 
 From table 5 above we can see that the most influential dimension for classifying microservices from a deployment perspective is the serverless characteristic which can be implemented in the cloud (public, private). Serverless is a relatively new concept that allows running an application piece of code without the need to operate or manage the server that it is deployed on. It is an approach which Castro (2017) qualifies as function as a service that makes life easier for the developer who only has to write the code and not worry about the underlying infrastructure. The dynamic nature of cloud makes it a good platform for serverless-based microservices. 
 
-%Table 6 goes here
+\begin{figure}[h!]
+\includegraphics{table6.png}
+\caption{Weighting of non-functional dimensions: Technology}
+\end{figure}
 
-If we take a look at the technology dimensions we can see from table 6 above that Upload type of microservices would mostly use RESTful or RPC communication protocol type while they could execute synchronously or asynchronously. Zimmermann (2017) cites RESTful HTTP as one of the most widely used communication protocol for microservices designed to help overcome the limitations of Service Oriented Architecture (SOA). The rest of the dimensions have very little influence in terms of where to classify the microservice hence their weighting of 1 except for the programming language that has a weight of 2 but still does not differentiate the microservice as both language types (scripting and object-oriented) carry an equal weight of 2. It is pretty obvious that microservices providing security functionality such as authentication and encryption have the highest weight on SSL/TLS certificate, API gateway, local directory and identity federation dimensions
+If we take a look at the technology dimensions we can see from table 6 above that Upload type of microservices would mostly use RESTful or RPC communication protocol type while they could execute synchronously or asynchronously. Zimmermann (2017) cites RESTful HTTP as one of the most widely used communication protocol for microservices designed to help overcome the limitations of Service Oriented Architecture (SOA). The rest of the dimensions have very little influence in terms of where to classify the microservice hence their weighting of 1 except for the programming language that has a weight of 2 but still does not differentiate the microservice as both language types (scripting and object-oriented) carry an equal weight of 2. It is pretty obvious that microservices providing security functionality such as authentication and encryption have the highest weight on SSL/TLS certificate, API gateway, local directory and identity federation dimensions.
 
-%Table 7 goes here
+\begin{figure}[h!]
+\includegraphics{table7.png}
+\caption{Weighting of non-functional dimensions: Technology/Data Store}
+\end{figure}
 
-In the table 7 above, we zoom into the data store dimension and we can see that microservices that use relational database in general would fall into the group of microservices providing search or reporting function while the logging functionality is mostly provided by microservices that are designed to work with flat files or object storage as data store. 
+In the Figure 5 above, we zoom into the data store dimension and we can see that microservices that use relational database in general would fall into the group of microservices providing search or reporting function while the logging functionality is mostly provided by microservices that are designed to work with flat files or object storage as data store. 
 
 
 \section{Classification of microservices using the taxonomy}
@@ -338,6 +431,7 @@ In this paper we look at the existing taxonomy of microservices and how they can
 
 While this taxonomy could be regarded as a significant step forward for helping classify microservices, more work can still be done to improve the taxonomy. For instance, we could look at the code level to try to identify common patterns that microservices share which eventually could be accounted for in their classification. We could also look at things like frameworks, packages and libraries that can help identify microservices. Another dimension that could be looked at is the compatibility of microservices in other words look at a way of classifying microservices based on their ability to work with each other to provide one of more functions. Another research that could be done building on the finding of the study is to look into designing a framework for discovering microservices which would appear like a logical evolution from of a taxonomy for classifying microservices.
 
+\pagebreak 
 \section{References}
 
 \begin{enumerate}

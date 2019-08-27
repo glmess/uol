@@ -197,7 +197,7 @@ We started by running a generic search using the following keywords: (“microse
 
 We then did some filtering based on a number of inclusion/exclusion criteria to further refine the results and narrow down the list to 100 microservices (full list in appendix) that were subjected to this study. Details of the criteria used for refining the results are provided in the next section.
 
-\subsubsection{Sample of microservices search inclusion criteria}
+\subsubsection{Sample of microservices selection}
 
 
 \begin{itemize} 
@@ -384,7 +384,7 @@ The other technology dimension that the framework proposes using for classifying
 \section{Description of the taxonomy}
 
 
-In our framework microservices are classified based on two main dimensions that is functional and non-functional dimensions. For a fine-grained classification we use a weighting mechanism of non-functional dimensions to be able to classify microservices by type of functionality tor functionalities they are designed to provide e.g. Logging, Authentication. The weighting ranges from between 0 and 5 with zero being the lowest weight meaning that any dimension with a weight of zero has very little or no influence in the classification by functionality of the microservice. The deployment dimension carries the lowest weight while a weighting of 5 means the dimension carries the highest weight which indicates that the dimension is the most important one in helping classifying microservices with that particular dimension. For example, an authentication microservice will have a weight of 1 for the deployment dimension for most microservices tend to be platform-agnostic given that they can run both on premise and in the cloud either by installing them directly on a server instance or by deploying inside a container. Figure 3 below shows how weighting is applied to non-functional dimensions.
+In our framework microservices are classified based on two main dimensions that is functional and non-functional dimensions. For a fine-grained classification we use a weighting mechanism of non-functional dimensions to be able to classify microservices by type of functionality to functionalities they are designed to provide e.g. Logging, Authentication. The weighting ranges from between 0 and 5 with zero being the lowest weight meaning that any dimension with a weight of zero has very little or no influence in the classification by functionality of the microservice. The deployment dimension carries the lowest weight while a weighting of 5 means the dimension carries the highest weight which indicates that the dimension is the most important one in helping classifying microservices with that particular dimension. For example, an authentication microservice will have a weight of 1 for the deployment dimension for most microservices tend to be platform-agnostic given that they can run both on premise and in the cloud either by installing them directly on a server instance or by deploying inside a container. Exception to that is if it is specifically stated in the requirements that a particular deployment method is preferred in which case the weighting should be 5 (the highest). Figure 3 below shows how weighting is applied to non-functional dimensions.
 
 \begin{figure}[h!]
 \includegraphics{table5.png}
@@ -398,7 +398,7 @@ From figure 3 above we can see that the most influential dimension for classifyi
 \caption{Weighting of non-functional dimensions: Technology}
 \end{figure}
 
-If we take a look at the technology dimensions we can see from table 6 above that Upload type of microservices would mostly use RESTful or RPC communication protocol type while they could execute synchronously or asynchronously. Zimmermann (2017) cites RESTful HTTP as one of the most widely used communication protocol for microservices designed to help overcome the limitations of Service Oriented Architecture (SOA). The rest of the dimensions have very little influence in terms of where to classify the microservice hence their weighting of 1 except for the programming language that has a weight of 2 but still does not differentiate the microservice as both language types (scripting and object-oriented) carry an equal weight of 2. It is pretty obvious that microservices providing security functionality such as authentication and encryption have the highest weight on SSL/TLS certificate, API gateway, local directory and identity federation dimensions.
+If we take a look at the technology dimensions we can see from figure 4 above that Upload type of microservices would mostly use RESTful or RPC communication protocol type while they could execute synchronously or asynchronously. Zimmermann (2017) cites RESTful HTTP as one of the most widely used communication protocol for microservices designed to help overcome the limitations of Service Oriented Architecture (SOA). The rest of the dimensions have very little influence in terms of where to classify the microservice hence their weighting of 1 except for the programming language that has a weight of 2 but still does not differentiate the microservice as both language types (scripting and object-oriented) carry an equal weight of 2. It is pretty obvious that microservices providing security functionality such as authentication and encryption have the highest weight on SSL/TLS certificate, API gateway, local directory and identity federation dimensions.
 
 \begin{figure}[h!]
 \includegraphics{table7.png}
@@ -407,9 +407,39 @@ If we take a look at the technology dimensions we can see from table 6 above tha
 
 In the Figure 5 above, we zoom into the data store dimension and we can see that microservices that use relational database in general would fall into the group of microservices providing search or reporting function while the logging functionality is mostly provided by microservices that are designed to work with flat files or object storage as data store. 
 
+The score of each functional dimension is calculated based on the average score of each of the main non-functional dimensions namely Technology (excluding Data store), Deployment and Data store. We first calculate the total sum of the weighting for the all the dimensions and then we work out the average by dividing the total sum by the total number of dimensions. Once we have the average for each of the three dimensions, then we can easily calculate the overall average score for each functional dimension. The microservice will be classified under the functional dimension with the highest average score while the recommended technical dimensions would be the ones with the highest weight unless the user specifically states in the requirements their preference for a particular one.
 
-\section{Classification of microservices using the taxonomy}
+\[Score(functional)_{x}=\sum_{i=1}^{n}Xi \; \; \text{\textit{(Where X represents the weight and n the number of technical dimensions)}}\] 
+\[(x \;is\; one\; of\; the \;3 \;non-functional \;dimensions\; group: \;Deployment,\; Technology \;and \;Data\; store) \]
+%\[Average(functional)=\frac{\sum_{i=1}^{n}Xi}{total \; number \; of \; dimensions} \]
 
+\[Average(functional)_{x}=\frac{Score(functional)_{x}}{total \; number \; of \; dimensions} \]
+
+\[Average(functional)_{total}=\frac{\sum_{i=1}^{3}Score(functional)_{x}}{3} \]
+
+Now let us use the data in figure 3, 4 and 5 above to replace the variables in our math formula to see what result we get:
+
+\[Score(Upload)_{deployment}=\sum_{i=1}^{11}Xi = 17\] 
+\[Score(Upload)_{technology}=\sum_{i=1}^{11}Xi = 19\] 
+\[Score(Upload)_{ds}=\sum_{i=1}^{12}Xi = 27\] 
+\[Average(Upload)_{deployment}=\frac{17}{11} = 1.54 \]
+\[Average(Upload)_{technology}=\frac{19}{11} = 1.72 \]
+\[Average(Upload)_{ds}=\frac{27}{12} = 2.25 \]
+\[Average(Upload)_{total}=\frac{1.54 + 1.72 + 2.25}{3} = 1.83\]
+
+In the same way we can calculate the average score for the the functional attributes:
+
+\[Average(Upload)_{total}=\frac{1.54 + 1.72 + 2.25}{3} = 1.83\]
+\[Average(Search)_{total}=\frac{1.54 + 1.72 + 2.58}{3} = 1.94\]
+\[Average(Monitoring)_{total}=\frac{1.54 + 1.45 + 2.27}{3} = 1.75\]
+\[Average(Logging)_{total}=\frac{1.54 + 1.45 + 1.91}{3} = 1.63\]
+\[Average(Reporting)_{total}=\frac{1.54 + 1.45 + 1.75}{3} = 1.58\]
+\[Average(Authentication)_{total}=\frac{1.54 + 2.63 + 1.16}{3} = 1.77\]
+\[Average(Encryption)_{total}=\frac{1.54 + 1.63 + 1}{3} = 1.39\]
+
+From the above calculation we can classify the microservice into the category of Search function as it has the highest average score of 1.94
+
+\section{Classification of microservice example using the taxonomy}
 
 If we take as an example a microservice from our sample: microservice-http-endpoint that we found on Amazon Web Services (AWS) serverless Application Repository (SAR) with the code available in awslabs GitHub repository \url{https://github.com/awslabs/serverless-application-model/tree/master/examples/apps/microservice-http-endpoint}.
 

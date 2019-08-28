@@ -230,6 +230,11 @@ We then did some filtering based on the inclusion/exclusion criteria listed in t
 
 As shown in figure 2 below, the taxonomy is made of functional and non-functional dimensions. The boxes on the left side are the function types that basically serves for the classification of microservices. On the right side we have the non-functional dimensions which will be weighted to help determine which function(s) type(s) a microservice fits into. On the let side we have the functional dimensions that we believe microservices would typically fulfill. For instance, for microservices designed to fulfil a logging function, it is expected that the key component would be a data store and possibly flat files or some object store for storing log files, and as such those dimensions should carry the highest weight. In the next section we discuss both sets of dimensions (non-functional and functional) in more details. We have identify a total of 7 main functional attributes which are listed below:
 
+\begin{figure}[h!]
+\includegraphics{taxonomydiagram.png}
+\caption{Taxonomy of Microservices.}
+\end{figure}
+
 \begin{itemize}
 \item \textbf{Encryption}
 This functional security characteristic is attributed to any microservice that is specifically designed to provide data security functionality such as encryption of data at rest or in transit. Anoter example are those microservices that are used as part of an application or a service to provide encryption of security keys. 
@@ -263,14 +268,15 @@ While we expect most microservice functions to fall into one of the category men
 
 \end{itemize}
 
-\begin{figure}[h!]
-\includegraphics{taxonomydiagram.png}
-\caption{Taxonomy of Microservices.}
-\end{figure}
-
 \subsection{RQ2 - Mapping of functional to technical attributes of microservices}
 
 This research proposes a new framework that allows for a more fine-grained taxonomy of microservices. Previous work done by Garriga (2018) have shown some limitations in classifying web services. To demonstrate how functional attributes of microservices map to technical ones we use an example of microservice-based application.
+
+\begin{figure}[h!]
+\includegraphics{func2techmapping.png}
+\caption{Mapping of non-functional to functional attributes of Microservices.}
+\end{figure}
+
 
 \textbf{- Meeting room status reporting example}
 
@@ -320,6 +326,8 @@ When we analysed microservices selected for this study it is possible that each 
 \item Data ingestion
 \item Upload
 \end{itemize}
+
+As shown in figure 3 above, the microservices under our taxonomy is classified under the search functionality identified with the red circle. On the right hand side we can also see the non-functional attributes that best fit the requirements of the meeting room status reporting example. For instance, we can see that the best database choice would be a relational database type while the best communication protocols that best address the best aligns with the requirements of a Search function microservice type is lightweight Restful protocol. In section 7 we discuss in details how the mapping process is done using mathematical formula.
 
 \subsection{RQ3 - Classifying and selecting microservices}
 

@@ -224,6 +224,8 @@ We then did some filtering based on the inclusion/exclusion criteria listed in t
 
 \end{itemize}
 
+\subsection{Classification method}
+
 To classify microservices we identify semantics from the users requirements for an application or service. Those semantics are keyword that can be used to describe the core functionality that a microservice provides and or the type technical action (such as analyzing log files, searching data, upload a file to name but a few) that is executed in the background. Once we have identified the semantics representing the functional classes of microservices, we then use a dimensional table to weight each non-functional attributes with a value between 0 and 5 with 5 being the highest weight indicating that a non-functional dimension is the most suitable for the functional class of microservice for which is it being weighted. The score of each functional class is calculated as per the math formula below based on the average score of each of the main non-functional dimensions namely Technology (excluding Data store), Deployment and Data store. We first calculate the total sum of the weighting for the all the dimensions and then we work out the average by dividing the total sum by the total number of dimensions. Once we have the average for each of the three dimensions, then we can easily calculate the overall average score for each functional dimension. The microservice will be classified under the functional class with the highest average score while the recommended technical dimensions would be the ones with the highest weight unless the user specifically states in the requirements their preference for a particular one.
 
 Details of the formula used in the calculation shown below:

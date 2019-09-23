@@ -13,8 +13,13 @@
 \usepackage{csquotes}
 \usepackage{makecell}
 \usepackage{multirow}
+\usepackage{lscape} 
 \usepackage{diagbox}
+\usepackage{longtable}
+\usepackage{hyperref}
 \usepackage{booktabs, tabularx}
+\usepackage{ textcomp}
+\usepackage{appendix}
 \usepackage{parskip}
 \usepackage[backend=bibtex,style=verbose-trad2]{biblatex} % Use biblatex package
 \bibliography{quick} % The name of the .bib file (name without .bib)
@@ -543,6 +548,137 @@ Pahl, C., \& Jamshidi, P. (2016). Microservices: A Systematic Mapping Study. Pro
 
 \end{enumerate}
 
+\pagebreak 
+\appendix
+\section{Sample of microservices}
 
+\begin{landscape}
+\begin{table}[h!]
+ \begin{center}
+  \tiny
+    \begin{tabular}{|l|l|l|}
+    \hline
+     \textbf{\makecell[l]{No}}	 &  \textbf{\makecell[l]{Microservice}}	&  \textbf{\makecell[l]{Reference}}\\\hline
+ \makecell[l]{1} &	 \makecell[l]{Alexa-smart-home-skill-adapter}	&  \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-\\east-1:077246666028:applications~alexa-smart-home-skill-adapter}}\\ \hline
+\makecell[l]{2} &	\makecell[l]{Datadog-Log-Forwarder} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:464622532012:applications~Datadog-Log-Forwarder}}\\ \hline
+\makecell[l]{3}	& \makecell[l]{SecretsManagerRDSMySQLRotationMultiUser} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:297356227824:applications~SecretsManagerRDSMySQLRotationMultiUser}}\\ \hline
+\makecell[l]{4} &	\makecell[l]{image-resizer-service}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:526515951862:applications~image-resizer-service}}\\ \hline
+\makecell[l]{5} &	\makecell[l]{alexa-skills-kit-color-expert-python} & \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~alexa-skills-kit-color-expert-python}}\\ \hline
+\makecell[l]{6}	& \makecell[l]{SecretsManagerRDSPostgreSQLRotationSingleUser}	 & \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:297356227824:applications~SecretsManagerRDSPostgreSQLRotationSingleUser}}\\ \hline
+\makecell[l]{7} &	\makecell[l]{alexa-skills-kit-nodejs-howtoskill} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:173334852312:applications~alexa-skills-kit-nodejs-howtoskill}}\\ \hline
+\makecell[l]{8}	&\makecell[l]{SecretsManagerRDSMySQLRotationSingleUser}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:297356227824:applications~SecretsManagerRDSMySQLRotationSingleUser}}\\ \hline
+\makecell[l]{9}	& \makecell[l]{alexa-skills-kit-nodejs-triviaskill}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:173334852312:applications~alexa-skills-kit-nodejs-triviaskill}}\\ \hline 
+\makecell[l]{10} &	\makecell[l]{alexa-skills-kit-nodejs-factskill}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:173334852312:applications~alexa-skills-kit-nodejs-factskill}}\\ \hline
+\makecell[l]{11} &	\makecell[l]{Hello-world}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~hello-world}}\\ \hline
+\makecell[l]{12}	&\makecell[l]{microservice-http-endpoint} & \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~microservice-http-endpoint}}\\ \hline
+\makecell[l]{13} &	\makecell[l]{Image resizer service}	& \makecell[l]{\url{https://github.com/cagataygurturk/image-resizer-service}}\\ \hline
+\makecell[l]{14} &	\makecell[l]{Uploader service}	& \makecell[l]{\url{https://github.com/evanchiu/serverless-galleria}}\\ \hline
+\makecell[l]{15} &	\makecell[l]{Image processing service} & \makecell[l]{\url{https://github.com/awslabs/serverless-application-model/tree/master/examples/apps/image-processing-service}}\\ \hline
+\makecell[l]{16}	& \makecell[l]{Simple Contact-us form} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:318300609668:applications~simple-contact-us-handler}}\\ \hline
+\makecell[l]{17}	& \makecell[l]{Cryptomonitor} &\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:713541911133:applications~crypto-monitor}}\\ \hline
+\makecell[l]{18} &	\makecell[l]{Step-function-send-to-sns} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~step-functions-send-to-sns}}\\ \hline
+\makecell[l]{19} &	\makecell[l]{SQS poller}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~sqs-poller}}\\ \hline
+\makecell[l]{20}	& \makecell[l]{Alexa random-restaurant} &\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:934629381695:applications~alexa-random-restaurant}}\\ \hline
+\makecell[l]{21}	& \makecell[l]{Uploader} &\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:233054207705:applications~uploader}}\\ \hline
+\makecell[l]{22}	 & \makecell[l]{https-request} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~https-request}}\\ \hline
+\makecell[l]{23}	& \makecell[l]{Event-stream-processing} & \makecell[l]{\url{https://github.com/kbastani/event-stream-processing-microservices}}\\ \hline
+\makecell[l]{24} &	\makecell[l]{Microservices-kubernetes}	& \makecell[l]{\url{https://github.com/ewolff/microservice-kubernetes}}\\ \hline
+\makecell[l]{25}	&\makecell[l]{Asynchronous HTTP microservices}&	\makecell[l]{\url{https://github.com/zeit/micro}}\\ \hline
+\makecell[l]{26}	& \makecell[l]{Customer stores} &	\makecell[l]{\url{https://github.com/spring-cloud-samples/customers-stores}}\\ \hline 
+\makecell[l]{27} &	\makecell[l]{Front-end application\\ for ALL microservices} &	\makecell[l]{\url{https://github.com/microservices-demo/front-end}}\\ \hline 
+\makecell[l]{28} &	\makecell[l]{alexa-skills-kit-python36-factskill} &\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:173334852312:applications~alexa-skills-kit-python36-factskill}}\\ \hline
+\makecell[l]{29} &	\makecell[l]{Datadog-RDS-Enhanced}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:464622532012:applications~Datadog-RDS-Enhanced}}\\ \hline
+\makecell[l]{30} &	\makecell[l]{SecretsManagerRDS\\PostgreSQLRotationMultiUser} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:297356227824:applications~SecretsManagerRDSPostgreSQLRotationMultiUser}}\\ \hline
+\makecell[l]{31}	 & \makecell[l]{standard-redirects-for-cloudfront} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:621073008195:applications~standard-redirects-for-cloudfront}}\\ \hline
+\makecell[l]{32}	& \makecell[l]{alexa-skills-kit-color-expert} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~alexa-skills-kit-color-expert}}\\ \hline
+\makecell[l]{33}	& \makecell[l]{api-lambda-save-dynamodb} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:375983427419:applications~api-lambda-save-dynamodb}}\\ \hline
+\makecell[l]{34}	 & \makecell[l]{hello-world-python3}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~hello-world-python3}}\\ \hline
+\makecell[l]{35} & \makecell[l]{serverless-todo}	 & \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:233054207705:applications~serverless-todo}}\\ \hline
+\makecell[l]{36}	& \makecell[l]{dynamodb-display} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:251940851769:applications~dynamodb-display}}\\ \hline
+\makecell[l]{37} &	\makecell[l]{dynamodb-elasticsearch} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:831212071815:applications~dynamodb-elasticsearch}}\\ \hline
+\makecell[l]{38}	& \makecell[l]{api-lambda-send-email-ses} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:375983427419:applications~api-lambda-send-email-ses}}\\ \hline
+\makecell[l]{39} &	\makecell[l]{alexa-skills-kit-nodejs-premium-facts-skill} &	\makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:173334852312:applications~alexa-skills-kit-nodejs-premium-facts-skill}}\\ \hline
+\makecell[l]{40} &	\makecell[l]{cloudfront-response-generation}	& \makecell[l]{\url{https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~cloudfront-response-generation}}\\ \hline
+\makecell[l]{41}	 & \makecell[l]{Online Table Reservation System} &	\makecell[l]{\url{https://www.codementor.io/packt/how-to-implement-an-online-table-reservation-system-with-microservices-kw2iacz17}}\\ \hline
+\makecell[l]{42}	& \makecell[l]{Sample logging microservice}	& \makecell[l]{\url{https://github.com/mohhmekk/sample-logging-microservice/blob/master/src/main/java/org/sample/assignment/log/MongoAppenderInitializer.java}}\\ \hline 
+\makecell[l]{43} &	\makecell[l]{sample-spring-microservices-new} &	\makecell[l]{\url{https://github.com/piomin/sample-spring-microservices-new}}\\ \hline 
+\makecell[l]{44} &	\makecell[l]{Distributed log system} &	\makecell[l]{\url{https://github.com/leoChaoGlut/log-sys}}\\ \hline 
+\makecell[l]{45} & \makecell[l]{}	& \makecell[l]{\url{https://github.com/search?q=microservice+logging}}\\ \hline 
+\makecell[l]{46} &	\makecell[l]{Microservices demo}	& \makecell[l]{\url{https://github.com/GoogleCloudPlatform/microservices-demo}}\\ \hline 
+\makecell[l]{47}	 & \makecell[l]{Sock shop} & 	\makecell[l]{\url{https://github.com/microservices-demo/microservices-demo}} \\ \hline
+\makecell[l]{48}	 & \makecell[l]{Asynchronous HTTP microservices} &	\makecell[l]{\url{https://github.com/zeit/micro}}\\ \hline 
+\makecell[l]{49} &	\makecell[l]{Cinema microservice} &	\makecell[l]{\url{https://github.com/Crizstian/cinema-microservice}}\\ \hline 
+
+\makecell[l]{50} &	\makecell[l]{vertx-blueprint-microservice} &	\makecell[l]{\url{https://github.com/sczyh30/vertx-blueprint-microservice}}\\ \hline 
+
+\end{tabular}
+        \caption{Sample of microservices 1}
+\end{center}
+\end{table}
+\end{landscape}
+
+
+\begin{landscape}
+\begin{table}[h!]
+ \begin{center}
+  \tiny
+    \begin{tabular}{|l|l|l|}
+    \hline
+
+\makecell[l]{51}	 & \makecell[l]{Microservice kafka} &\makecell[l]{\url{https://github.com/ewolff/microservice-kafka}}\\ \hline 
+\makecell[l]{52}	 &	\makecell[l]{\url{https://github.com/bigcompany/hook.io}}\\ \hline 
+\makecell[l]{53} &	\makecell[l]{Debugger for microservices}	& \makecell[l]{\url{https://github.com/solo-io/squash}}\\ \hline 
+\makecell[l]{54} & \makecell[l]{Microservice framework benchmark} &	\makecell[l]{\url{https://github.com/networknt/microservices-framework-benchmark}} \\ \hline
+\makecell[l]{55} &	\makecell[l]{Event strem processing microservice} & \makecell[l]{\url{https://github.com/kbastani/event-stream-processing-microservices}}\\ \hline 
+\makecell[l]{56} & \makecell[l]{}	 &	\makecell[l]{\url{https://github.com/pywren/pywren}}\\ \hline 
+\makecell[l]{57} &	\makecell[l]{Microservice dashboard} &	\makecell[l]{\url{https://github.com/ordina-jworks/microservices-dashboard}}\\ \hline 
+\makecell[l]{58} &	\makecell[l]{Login} & \makecell[l]{\url{https://github.com/lipp/login-with}}\\ \hline 
+\makecell[l]{59}	& \makecell[l]{Customers stores} &	\makecell[l]{\url{https://github.com/spring-cloud-samples/customers-stores}}\\ \hline 
+\makecell[l]{60}	& \makecell[l]{Cinema written using Flask}  &	\makecell[l]{\url{https://github.com/umermansoor/microservices}}\\ \hline 
+\makecell[l]{61} &	\makecell[l]{Airships manufacturer example} &	\makecell[l]{\url{https://github.com/nameko/nameko-examples}}\\ \hline 
+\makecell[l]{62} &	\makecell[l]{SpaCy}	& \makecell[l]{\url{https://github.com/explosion/spacy-services}}\\ \hline 
+\makecell[l]{63} &	\makecell[l]{Microservices Dockerfiles} &	\makecell[l]{\url{https://github.com/izuolan/dockerfiles}}\\ \hline 
+\makecell[l]{64} &	\makecell[l]{Todo} &	\makecell[l]{\url{https://github.com/h4xr/todo}}\\ \hline 
+\makecell[l]{65}	& \makecell[l]{ICp Banking Microservices} & 	\makecell[l]{\url{https://github.com/IBM/ICp-banking-microservices}}\\ \hline 
+\makecell[l]{66} &	\makecell[l]{Microservice for rendering \\PDF/PNG/JPEG from HTML with Electron} &	\makecell[l]{\url{https://github.com/msokk/electron-render-service}}\\ \hline 
+\makecell[l]{67} &	\makecell[l]{Stockquote}	& \makecell[l]{\url{https://github.com/IBMStockTrader/stock-quote}}\\ \hline 
+\makecell[l]{68}	& \makecell[l]{Email service}	& \makecell[l]{\url{https://github.com/clevertech/email-service}}\\ \hline 
+\makecell[l]{69}	 & \makecell[l]{Store and display sales receipts}  &	\makecell[l]{\url{https://github.com/pagarme/tldr}}\\ \hline 
+\makecell[l]{70} &	\makecell[l]{Timestamp} &	\makecell[l]{\url{https://github.com/Rafase282/Timestamp-API }}\\ \hline
+\makecell[l]{71} &	\makecell[l]{Spreadsheet csv conversion} &	\makecell[l]{\url{https://github.com/SheetJS/sheetaki}}\\ \hline 
+\makecell[l]{72}	& \makecell[l]{Pitstop – Garage Management system} &	\makecell[l]{\url{https://github.com/EdwinVW/pitstop}}\\ \hline 
+\makecell[l]{73} &	\makecell[l]{Shopping Cart}	& \makecell[l]{\url{https://github.com/CiscoCloud/shipped-demo-web}}\\ \hline 
+\makecell[l]{74} &	\makecell[l]{IBM Watson Assistant journey} &	\makecell[l]{\url{https://github.com/IBM/conversation-with-linuxone-using-watson-microservices}}\\ \hline 
+\makecell[l]{75} &	\makecell[l]{eSchool microservice} &	\makecell[l]{\url{https://github.com/OpenCodeFoundation/eSchool}}\\ \hline 
+\makecell[l]{76} &	\makecell[l]{Report microservice} &	\makecell[l]{\url{https://github.com/k8guard/k8guard-report}}\\ \hline 
+\makecell[l]{77} &	\makecell[l]{Real Time streaming PCF microservice} &	\makecell[l]{\url{https://github.com/kgshukla/Realtime-Streaming-PCF-Microservices-Docker}} \\ \hline 
+\makecell[l]{78} &	\makecell[l]{Homepage for all the microservices	} & \makecell[l]{\url{https://github.com/TangentMicroServices/Dashboard-WebClient}}\\ \hline 
+\makecell[l]{79} &	\makecell[l]{School service microservices} &	\makecell[l]{\url{https://github.com/vzhuleho/microservices-school}}\\ \hline 
+\makecell[l]{80} &	\makecell[l]{Stripe charge} &	\makecell[l]{\url{https://github.com/ColeTownsend/micro-stripe-charge-example}}\\ \hline 
+\makecell[l]{81} &	\makecell[l]{Auditing server as a service} &	\makecell[l]{\url{https://github.com/audit4j/audit4j-microservice}}\\ \hline 
+\makecell[l]{82} &	\makecell[l]{PDF generator} &	\makecell[l]{\url{https://github.com/ministryofjustice/pdf-generator }}\\ \hline
+\makecell[l]{83}	& \makecell[l]{Proxy} &	\makecell[l]{\url{https://github.com/Clamenu/eddie-proxy}}\\ \hline 
+\makecell[l]{84} &	\makecell[l]{Microservices orchestration} &	\makecell[l]{\url{https://github.com/nittapp/main}}\\ \hline 
+\makecell[l]{85} &	\makecell[l]{Microservices agency} &	\makecell[l]{\url{https://github.com/TheMicroservicesAgency/msa-website}}\\ \hline 
+\makecell[l]{86} &	\makecell[l]{Simple stateless microservice} &	\makecell[l]{\url{https://github.com/SVM143/Microservices}}\\ \hline 
+\makecell[l]{87} &	\makecell[l]{File conversion} &	\makecell[l]{\url{https://github.com/sgbj/versed}}\\ \hline 
+\makecell[l]{88} &	\makecell[l]{Microservices infrastructures} &	\makecell[l]{\url{https://github.com/josedab/spring-cloud-examples}}\\ \hline 
+\makecell[l]{89} &	\makecell[l]{VM creation} & 	\makecell[l]{\url{https://github.com/ewolff/microservices-vm}}\\ \hline 
+\makecell[l]{90} &	\makecell[l]{Scientific visualization as a microservice} &	\makecell[l]{\url{https://github.com/seelabutk/tapestry}}\\ \hline 
+\makecell[l]{91} &	\makecell[l]{Tom microservice example} &	\makecell[l]{\url{https://github.com/Kikobeats/tom-example}}\\ \hline 
+\makecell[l]{92} &	\makecell[l]{The user microservice} &	\makecell[l]{\url{https://github.com/microservices-demo/user}}\\ \hline 
+\makecell[l]{93} &	\makecell[l]{eCommerce microservice} &	\makecell[l]{\url{https://github.com/digota/digota}}\\ \hline 
+\makecell[l]{94} &	\makecell[l]{Microservice toolkit for NY times} &	\makecell[l]{\url{https://github.com/nytimes/gizmo}}\\ \hline 
+\makecell[l]{95} &	\makecell[l]{Greeter microservice} &	\makecell[l]{\url{https://github.com/micro/examples/tree/master/greeter}}\\ \hline 
+\makecell[l]{96} &	\makecell[l]{Booking example} &	\makecell[l]{\url{https://github.com/micro/examples/tree/master/booking}}\\ \hline 
+\makecell[l]{97} &	\makecell[l]{Secure} &	\makecell[l]{\url{https://github.com/micro/examples/tree/master/secure}}\\ \hline 
+\makecell[l]{98} &	\makecell[l]{Metadata} &	\makecell[l]{\url{https://github.com/micro/examples/tree/master/metadata}}\\ \hline 
+\makecell[l]{99} &	\makecell[l]{Language sentiment} &	\makecell[l]{\url{https://github.com/cdipaolo/sentiment-server}}\\ \hline 
+\makecell[l]{100}  &	\makecell[l]{MariaDB for microservices} &	\makecell[l]{\url{https://github.com/bstaijen/mariadb-for-microservices}}\\ \hline     
+\end{tabular}
+        \caption{Sample of microservices 2}
+\end{center}
+\end{table}
+\end{landscape}
 \end{document}
  

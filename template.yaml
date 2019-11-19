@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Parameters:
+  LogLevel:
+    Type: String
+    Description: Log level for lambda function logging
+    Default: INFO
+
+
+Resources:
+  TweetProcessor:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: mylambdafunction.handler
+      Runtime: python3.7
+      Timeout: 60
+      Environment: 
+        Variables: 
+          LOG_LEVEL: !Ref LogLevel
+  TweetEventSource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location:
+        ApplicationId: arn:aws:serverlessrepo:us-east-1:771389557967:applications/TweetEventSource
+        SemanticVersion: 0.0.2
+      Parameters: 
+        # Additional parameters to be added to the API call. This should be in query string format.
+        # AdditionalParameters: '' # Uncomment to override default value
+        # Consumer API Key in plain text.
+        # ConsumerApiKey: '' # Uncomment to override default value
+        # Consumer API Secret Key in plain text.
+        # ConsumerApiSecretKey: '' # Uncomment to override default value
+        # KMS key name of the key used to encrypt the Twitter Consumer API Keys. Note, this must be just the key name (UUID), not the full key ARN. It's assumed the key is owned by the same account, in the same region as the app.
+        # DecryptionKeyName: 'invalid' # Uncomment to override default value
+        # Encrypted Twitter Consumer API Key encrypted ciphertext blob as a base64-encoded string.
+        # EncryptedConsumerApiKey: '' # Uncomment to override default value
+        # Encrypted Twitter Consumer API Secret Key encrypted ciphertext blob as a base64-encoded string.
+        # EncryptedConsumerApiSecretKey: '' # Uncomment to override default value
+        # (Optional) The level of logging desired (error, warn, info, debug or trace).
+        # LoggingLevel: 'error' # Uncomment to override default value
+        # Milliseconds before any given request to the Twitter API will timeout and give up.
+        # PerRequestTimeout: '1500' # Uncomment to override default value
+        # Maximum time in seconds to spend on a single polling session.
+        # PollTimeout: '30' # Uncomment to override default value
+        # Frequency in minutes to poll for new tweets.
+        # PollingFrequencyInMinutes: '5' # Uncomment to override default value
+        # Name of lambda function that should be invoked to process tweets. Note, this must be a function name and not a function ARN.
+        ProcessorFunctionName: !Ref TweetProcessor
+        # Search query to be passed to Twitter to select tweets to use for the event source.
+        SearchQuery: '#microservice -filter:nativeretweets'  
+      

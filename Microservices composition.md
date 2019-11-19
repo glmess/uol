@@ -1,6 +1,6 @@
 # Microservices composition
 
-##Amazon Web Services approach using Serverless Application Repository (SAR)and Serverless Application Model (SAM)
+#Amazon Web Services approach using Serverless Application Repository (SAR)and Serverless Application Model (SAM)
 
 AWS approach to microservices composition leverages two AWS main components which are AWS Serverless Application Model (SAM) and AWS Serverless Application Repository. 
 
@@ -67,8 +67,9 @@ AWS Serverless Application Repository (SAR)
 
 The AWS Serverless Application Repository is a managed repository for serverless applications. It enables teams, organizations, and individual developers to store and share reusable applications, and easily assemble and deploy serverless architectures in powerful new ways. Using the Serverless Application Repository, you don't need to clone, build, package, or publish source code to AWS before deploying it. Instead, you can use pre-built applications from the Serverless Application Repository in your serverless architectures, helping you and your teams reduce duplicated work, ensure organizational best practices, and get to market faster.
 
+![MacDown Screenshot](sar.png)
 
-##AWS microservices composition example 1
+#AWS microservices composition example 1
 
 The first example that we look at is a sample HelloWorld application implements a simple API backend. The resources to be deployed are an API Gateway endpoint and a Lambda function. The app performs a very basic functionality which is to service When a user's GET request sent to the API Gateway endpoint, which then triggers the invokation of the lambda function that returns a hello world message.
 
@@ -188,7 +189,7 @@ However if I test the composed app deployed in my AWS account, I would need to h
 	(base) 186590dda78b:sam-app gleschen$ curl -u testuser:1234 https://e4aqvihhw0.execute-api.eu-west-1.amazonaws.com/Prod/hello/
 	{"message": "hello world"}
 	
-##AWS microservices composition example 2
+#AWS microservices composition example 2
 
 Twitter search app tha connect a twitter api to search for tweets and then invoke a lambda function to performs processing on the retrieved tweets.
 
@@ -226,7 +227,7 @@ SAM template
 
 The TweetEventSource published in the SAR <https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:771389557967:applications~TweetEventSource> application provides a functionality that is needed to augment the capability of the tweetProcessor application, so I am using the same process (nested stack inside SAM template) as before compose the two applications into a single app.
 
-##AWS microservices composition example 3
+#AWS microservices composition example 3
 
 The third example is a simple ecommerce application that enables customers to select a product and pay for it. The payment functionality is provided by a microservice published on the AWS SAR (<https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:375983427419:applications~api-lambda-stripe-charge>), which can be copied and embedded onto the SAM template of the frontend microservice.
 
@@ -266,7 +267,7 @@ SAM template:
 	      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/product/123
 	    Description: The URL of the sample API Gateway
 
-##AWS microservices composition example 4 
+#AWS microservices composition example 4 
 
 This example is a basic http microservice endpoint that performs read/write to DynamoDB with a RESTful API endpoint using Amazon API Gateway. The composition is done with another microservice that takes the data written to the table as input to make another http request to the API gateway endpoint.
 
@@ -301,7 +302,7 @@ SAM template:
 	      Parameters: 
 	        TableNameParameter: !Ref BasicLogTable  
             
-##AWS microservices composition example 5 - WSO2 with Ballerina 
+#AWS microservices composition example 5 - WSO2 with Ballerina 
 
 A Travel agency that manages tours for tourists needs to issue and airline ticket reservation, book a hotel room and car rental. The hotel, airline and car rental services are all external services to the travel agency service as illustrated in the following diagram:
 
@@ -310,7 +311,7 @@ A Travel agency that manages tours for tourists needs to issue and airline ticke
 Details of the composition approach are described in the following github repository readme file:
 <https://github.com/ballerina-guides/service-composition>
 
-##AWS microservices composition example 6 - Medley domain specific language (DSL)
+#AWS microservices composition example 6 - Medley domain specific language (DSL)
 
 The Medley DSL allows users to declare and configure processes to use and to compose. In particular, the Medley DSL enables users to express how to compose processes altogether according to the events that can occur on their respective output streams. 
 
@@ -357,3 +358,4 @@ The code extract below gives an overview of a composition of a set of processes 
 5. <https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html>
 
 6. <https://aws.amazon.com/serverless/sam/>
+7. <https://aws.amazon.com/serverless/serverlessrepo/>

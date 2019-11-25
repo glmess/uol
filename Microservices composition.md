@@ -346,6 +346,19 @@ The code block below describes a composition that periodically (line 2, 13) chec
 	25 				"body": "Error encountered while fetching new issues: {{$.error.message}}"
 	26 			});
 	27 } } }
+#More examples
+
+##Tweet sentiment Analysis
+This application is composed with the twitter event source app to processes tweets for a given Twitter search, calls Amazon Comprehend to do sentiment analysis on the tweet text, and publishes the sentiment scores as custom metrics to Amazon CloudWatch Metrics.
+
+Architecture
+
+![MacDown Screenshot](tweetsentiment.png)
+
+SAM template: <https://github.com/jlhood/tweet-sentiment-python/blob/master/template.yml>
+
+Full details and installation guide available in the following GitHub repo:
+<https://github.com/jlhood/tweet-sentiment-python>
 
 #References
 

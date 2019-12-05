@@ -381,6 +381,13 @@ Deployment instructions:
 
 <https://github.com/awslabs/realworld-serverless-application>
 
+#Common patterns 
+Events
+
+API
+
+Middleware (Queue system, notification service, integration adapter)
+
 #References
 
 1. Yahia, E. B. H., Réveillère, L., Bromberg, Y.-D., Chevalier, R., & Cadot, A. (2016). Medley: An Event-Driven Lightweight Platform for Service Composition. Lecture Notes in Computer Science Web Engineering, 3–20. doi: 10.1007/978-3-319-38791-8_1

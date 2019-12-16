@@ -1,7 +1,7 @@
-#Commonalities of Microservice-based applications
+# Commonalities of Microservice-based applications
 To try understand how microservices combined manually together into an application. The goal of this exercise is to identify common patterns and commonly used components in the process of building microservice-based applications in order to automate and simplify the process.
 
-##Methodology
+## Methodology
 
 I worked on a sample of 100 open source applications that were found mainly from GitHub. I then saved the urls into a csv file which I used as input file to a python program that search for images in the GitHub repos of the 100 apps, extract texts from the found images using google vision api and produce a data visualization bar chart that shows the texts that are used the most from the found images.
 
@@ -113,7 +113,7 @@ I only chose to display the first 15 texts which are shown in teh following diag
 
 ![alt text](barchart.png)
 
-**Conclusion**
+## Conclusion
 
 Service is the text that has to highest number of ocurrence with a total of 86 occurrences followed by docker which occurences over 60 times and microservice, default and api. Out of the 15 texts however, only 6 of them (listed below) truly represent an architecture components. We can therefore conclude on the basis of the results of the study that these 5 components are highly likely to be part of a microservice-based application.
 
@@ -124,7 +124,7 @@ Service is the text that has to highest number of ocurrence with a total of 86 o
 - Get
 - Database
 
-##Limitations
+## Limitations
 The methodology used could be improved for it has a number of limitations including the fact that the program did not triage images to only include the ones for the architecture diagrams. As results the data had lots of noise. For instance the diagram shows that the number 8 was capture over 30 times as a text from images and such text does not tell us much about the architecture of microservice-based applications. The same goes for other texts such as delete, namespace, catalog and more.
 
 One way to remove (or at least reduce the noisy data) would be to get the URLs of images directly rather that the entire github repo for each application which has lots of non-relevant images.

@@ -3,11 +3,11 @@
 This report describes the work that I have done since the last probation meeting that took place on the 25th of September 2019. It is structured as follows:
 
 - A summary of the research problem
+- Understanding microservice composition
 - Microservices classification proof of concept 
+
 	- Results
 	- Limitations
-- Understanding microservice composition
-- Challenges
 - Next steps
 
 ## Summary of the research problem
@@ -22,153 +22,254 @@ Microservice is an architectural design style for building applications, which i
 
 Despite all the benefits that microservices provide, they also introduce new challenges. For instance, there is no real standard by which microservices need to adhere to. Similarly, several microservices that provide the same functionalities are being built which leads to duplicate efforts. The other challenge with microservices is that today it is still a complex task to build microservice-based applications which requires deep programming skills and manual task. It is the latter that this research is attempting to solve.
 
-## Microservices classification: Proof of concept
+## Understanding Microservices composition.
 
-In order to automate the composition of microservices to produce an application, one needs to have a way to map out functional requirements to existing microservices. For example if building an eCommerce application for a Retail business, mostly likley a cart and checkout microservices would be required, and as such both could be classified as retail type microservices. I tested two approaches for classifiying microservices by vertical functions: one approach that is based on a user defined dictionnary (which could be expanded into a library) and the other one is based on machine learning. For both approaches I have identified 11 classes including: Automotive, Banking, Education, Energy & Utility, Healthcare, Food and Beverages, Insurance, Law, Media & entertainment, Retail and Transportation.
+I worked on a sample of 100 open source microservice-based application available [here](https://github.com/glmess/uol/blob/master/Manual_DataMining_Microsrvc_Apps.xlsx) and took a detailed look on the following five (chosen randomly) listed here:
 
-- **User-defined dictionnary**
+- [eShopOnContainers](https://github.com/dotnet-architecture/eShopOnContainers)
+- [Micro-company](https://github.com/idugalic/micro-company)
+- [Coolstore](https://github.com/vietnam-devs/coolstore-microservices)
+- [Micro-ecommerce](https://github.com/idugalic/micro-ecommerce)
+- [Simple-transaction](https://github.com/johnph/simple-transaction)
 
-This approach consists in creating a dictionary containing most commonly used keywords for each industry. For example: Bank account, credit card, loans for banking. The next step consists in extracting text contents from the source files of the microservices based application and saing it into a single file after doing some data cleaning using a python program and the final step is the actual classification by running the single file against the dictionnary and if keywords are found in the file, the microservice is classified accordingly. For this approach I have added an additional 6 horizontal classes including: Search, Upload, Authentication, Monitoring, logging and Other. This was done so as to allow for a dual classification by vertical as well as horizontal function.
-   
-Code extract for data cleaning:
+We can see from the looking at the architecture that they share similar architecture pattern with a frontend, and API gateway and a backend. More specifically they all have an API gateway component that receive api requests and passes on to the corresponding backend microservice or simply fans out the request to two or more microservices.
 
-	path = "/Users/gleschen/Downloads/test_raw_file.txt"
-	file=open(path,'r')
-	lines=file.readlines()
-	cummulateString=''
-	for line in lines:
-	#print(newLine)
-	    for char in line:
-	# Exclude the non alphabitical data.
-	        if(char.isalpha()):
-	            cummulateString+=char
-	        elif(char.isspace()):
-	            cummulateString+=''
-	        elif(char.isupper()):
-	            char=char.lower()
-	            cummulateString+=char
-	        else:
-	            cummulateString+=' '
-	            cummulateString+=' '
-	print(cummulateString)
-	#file.close()
-	cummulateString+=' '
+# Commonalities of Microservice-based applications
+To try understand how microservices combined manually together into an application. The goal of this exercise is to identify common patterns and commonly used components in the process of building microservice-based applications in order to automate and simplify the process.
 
-Removing non meaningful words known as stopwords:
+Another component that all five microservices have is the authorization or identity service which ensures that users making requests have the required permissions to do so.
 
-	import sys
-	stop_words = set(stopwords.words('english')) 
-	word_tokens = word_tokenize(cummulateString)  
-	filtered_sentence = [w for w in word_tokens if not w in stop_words]  
-	filtered_sentence = [] 
-	for w in word_tokens: 
-	    if w not in stop_words: 
-	        filtered_sentence.append(w) 
-	print(word_tokens) 
-	print(filtered_sentence) 
-	with open('cleaned_data.txt', 'w') as f:
-	    print(filtered_sentence, file=f)  
-	file.close()
+Identity type microservices are good candidate for reuse for they are commonly used functionalities and can be easily glued into a program. As can be seen from the following code snippet, all that is required is to define the new api resource, and then add a new client specifying how they will be identified and what resources they are authorized to access.
 
-Code extract for the classification:
-
-	import ast
-	countDic ={}
-	countDic['Topic']={}
-	countDic['Topic']['H']={}
-	countDic['Topic']['V']={}
-	type_1='V'
-	from keras.preprocessing.text import Tokenizer,text_to_word_sequence
-	with open('/Users/gleschen/Downloads/_huge_Java-Bank-Project') as f:
-	    cleanedData=f.read()
-	    for indxCol in range(0,len(df.columns)):
-	        if(indxCol < 13):
-	            #print(df.columns[indxCol])
-	            countDic['Topic'][type_1][df.columns[indxCol]]=0
-	        else:
-	            type_1='H'
-	            countDic['Topic'][type_1][df.columns[indxCol]]=0
-	        for indx in range(0,len(df.loc[:,df.columns[indxCol]])): 
-	          #print(df.loc[:,df.columns[indxCol]][indx])
-	          if df.loc[:,df.columns[indxCol]][indx] in cleanedData and df.loc[:,df.columns[indxCol]][indx]!='no':
-	            countDic['Topic'][type_1][df.columns[indxCol]]+=1
-	            #print(countDic['Topic'][type_1][df.columns[indxCol]])
-	            print(df.loc[:,df.columns[indxCol]][indx])
-	            cleanedatalist = ast.literal_eval(cleanedData)
-	            t=Tokenizer()
-	            t.fit_on_texts(cleanedatalist)
-	HList=[]
-	VList=[]
-	for key in countDic['Topic']['H']:
-	  if(countDic['Topic']['H'][key]==max(countDic['Topic']['H'].values())):
-	    HList+=[key]
-	for key in countDic['Topic']['V']:
-	  if(countDic['Topic']['V'][key]==max(countDic['Topic']['V'].values())): 
-	    VList+=[key]
-
-The full code can be found in the following GitHub repository:
-
-[Microservice classification based on user-defined dictionary](https://github.com/glmess/uol/blob/master/Microservices_Classification_Without_ML.ipynb)
-
-
-- **Machine Learning based classification**
-
-For this approach I used a combination of each of the 11 classes keywords and the string microservice to search for relevant repositories to for my training and testing dataset. I was able to scrape a total number of 1917 microservices repositories from Github. Just like in the other approach I first extracted the text from all the files of each repository and then converted it to a single in a process known as stemming and lematization using the natural language toolkit library and then tokenized and encoded the resulting contents. The code extract for this process is shown below:
-
-	#Tokenize ,stemming, lemmatize
-	stem=PorterStemmer()
-	stemmingWordsLs=[]
-	Lemmatizer = WordNetLemmatizer()
-	stemmer = SnowballStemmer("english")
-	lemmatizWordsLs=[]
-	reposContentsTokenList = []
-	reposContentsStrList=[]
-	# Remove Duplications and stemmer
-	for indx in range(0,len(reposContentsList)):
-	        reposContentsTokenList += [list(dict.fromkeys(reposContentsList[indx].split(' ')))]
-	        #print(list(dict.fromkeys(reposContentsList[indx].split(' '))))
-	        reposContentsStrList.append('')
-	        wordsLs=reposContentsTokenList[-1]
-	        #print(wordsLs)
-	        for wordIndx in range(0,len(wordsLs)):
-	            if wordsLs[wordIndx] not in gensim.parsing.preprocessing.STOPWORDS and len(wordsLs[wordIndx]) > 3: 
-	                    lemmatizWord=Lemmatizer.lemmatize(wordsLs[wordIndx])
-	                    stemmingWordsLs+=[stemmer.stem(lemmatizWord)]
-	                    reposContentsStrList[-1]+=stemmingWordsLs[-1]
-	                    if(wordIndx !=len(wordsLs)-1):
-	                        reposContentsStrList[-1]+=' '
-	          
-	        print(wordIndx)
-	        reposContentsTokenList[-1]= stemmingWordsLs
-	        stemmingWordsLs=[]
-	        lemmatizWordsLs=[]
-	vectorizer = TfidfVectorizer(analyzer='word',stop_words='english')
-	X_encoded = vectorizer.fit_transform(cleanedData)
+	using IdentityServer4;
+		using IdentityServer4.Models;
+		using System.Collections.Generic;
 	
-I then split the dataset in two: 80 per cent for training and 20 per cent for testing using the following code extract:
+	namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
+	{
+	    public class Config
+	    {
+	        // ApiResources define the apis in your system
+	        public static IEnumerable<ApiResource> GetApis()
+	        {
+	            return new List<ApiResource>
+	            {
+	                new ApiResource("orders", "Orders Service"),
+	                new ApiResource("basket", "Basket Service"),
+	                new ApiResource("marketing", "Marketing Service"),
+	                new ApiResource("locations", "Locations Service"),
+	                new ApiResource("mobileshoppingagg", "Mobile Shopping Aggregator"),
+	                new ApiResource("webshoppingagg", "Web Shopping Aggregator"),
+	                new ApiResource("orders.signalrhub", "Ordering Signalr Hub"),
+	                new ApiResource("webhooks", "Webhooks registration Service"),
+	            };
+	        }
+	
+	        // Identity resources are data like user ID, name, or email address of a user
+	        // see: http://docs.identityserver.io/en/release/configuration/resources.html
+	        public static IEnumerable<IdentityResource> GetResources()
+	        {
+	            return new List<IdentityResource>
+	            {
+	                new IdentityResources.OpenId(),
+	                new IdentityResources.Profile()
+	            };
+	        }
+	
+	        // client want to access resources (aka scopes)
+	        public static IEnumerable<Client> GetClients(Dictionary<string, string> clientsUrl)
+	        {
+	            return new List<Client>
+	            {
+	                // JavaScript Client
+	                new Client
+	                {
+	                    ClientId = "js",
+	                    ClientName = "eShop SPA OpenId Client",
+	                    AllowedGrantTypes = GrantTypes.Implicit,
+	                    AllowAccessTokensViaBrowser = true,
+	                    RedirectUris =           { $"{clientsUrl["Spa"]}/" },
+	                    RequireConsent = false,
+	                    PostLogoutRedirectUris = { $"{clientsUrl["Spa"]}/" },
+	                    AllowedCorsOrigins =     { $"{clientsUrl["Spa"]}" },
+	                    AllowedScopes =
+	                    {
+	                        IdentityServerConstants.StandardScopes.OpenId,
+	                        IdentityServerConstants.StandardScopes.Profile,
+	                        "orders",
+	                        "basket",
+	                        "locations",
+	                        "marketing",
+	                        "webshoppingagg",
+	                        "orders.signalrhub",
+	                        "webhooks"
+	                    },
+	                },
+The microservices communicate with each other via the event bus. This piece of [code](https://github.com/dotnet-architecture/eShopOnContainers/blob/dev/src/Services/Ordering/Ordering.API/Application/IntegrationEvents/OrderingIntegrationEventService.cs) indicates how the ordering microservices publishes an event to the service bus without knowing which service will pick it up and that shows how loosely coupled microservices are, equally it is a good indication that new microservices could be added to this application in a composition process.
 
-	xTrain,xTest,yTrain,yTest,repoNaTrain,repoNaTest=train_test_split(X_encoded,Y_encoded,reposNameList,test_size=0.2)
 
-I trained the dataset using the following algorithms:
+## Methodology
 
-- Support Vector Machine
-- Random Forest
-- Multilayer perceptron
-- XGBoost
-- Naive Bayes
-- Logistic regression
-- Bagging 
+I worked on a sample of 100 open source applications that were found mainly from GitHub. I then saved the urls into a csv file which I used as input file to a python program that search for images in the GitHub repos of the 100 apps, extract texts from the found images using google vision api and produce a data visualization bar chart that shows the texts that are used the most from the found images.
 
-The best accuracy I could achieve with my initial dataset was with Bagging classifier algorithm with 61% for testing and 84% for testing with quite a big gap between the two indicating an over fitting problem. I increased my dataset to 3899 microservices repositories and was able to increase the accuracy to 95% for training and 85% for testing. And while the accuracy improved the overfitting issue remains. I have recently downloaded more data which I'm currently cleaning and hope to run through the model in the coming and hopefully solve the overfitting issue.
+## Search criteria
 
-[ML based microservice classification source code](https://github.com/glmess/uol/blob/master/Microservices%20Classification%20ML%20based.ipynb)
+I used the following keywords:
+
+"Microservice AND application" OR
+"Microservice AND architecture"
+
+I ultimately selected applications that met the above criteria AND in additon had an architecture diagram.
+
+## URLs crawling
+
+I uploaded the csv (microservice_based_apps.csv) file containing the urls of my sampe of 100 applications into my Gdrive which I then mounted into my python program which I run on Jupyter notebook of Google Colaboratory. 
+I used pandas and Beautifulsoup libraries to read the URLs from the csv file and retrieve the images. See code snippet below:
+
+
+	repo_links = pd.read_csv('microservice_based_apps.csv')
+	images = []
+	#print(repo_links['source'].dtypes)
+	for link in repo_links['source']:
+	    print(link)
+	    html_page = urllib2.urlopen(link)
+	    soup = BeautifulSoup(html_page)
+	    images.append([])
+	    for img in soup.findAll('img'):
+	        #print(img)
+	        images[-1].append(img.get('src'))
+	        
+	print(images)
+
+## Reading texts from images
+
+Once the images have been collected, the next step was to read texts from those images. This was done using the following code:
+
+
+	# getting length of list 
+	length = len(images) 
+	#print(length)
+	#print(len(images[0]))
+	textls=[]
+	listOfAnno=[]
+	# Iterating the index 
+	# same as 'for i in range(len(list))' 
+	for i in range(length):
+	    textls.append([])
+	    print(i)
+	    for j in range(len(images[i])):
+	        #img = cv2.imread('images[i]')
+	        if(images[i][j].split('/')[-1]==''):
+	            continue
+	        if(images[i][j].split('/')[0] != 'https:'):
+	            images[i][j]='https://github.com'+images[i][j]
+	    
+	        #file=open([i].split('/')[-1]images,'wb')
+	        #print(j)
+	        try:
+	            file=open(images[i][j].split('/')[-1],'wb')
+	        except:
+	            continue 
+	        file.write(requests.get(images[i][j]).content)
+	        with open(images[i][j].split('/')[-1], 'rb') as image_file:
+	            content = image_file.read()
+	            
+	        image = types.Image(content=content) 
+	        client = vision.ImageAnnotatorClient()
+	        
+	        #print(client)
+	        try:
+	            response = client.text_detection(image=image)
+	            #print(response)
+	        except:
+	            continue
+	        text = response.text_annotations
+	        
+	        #print(type(list(text)))
+	        if(list(text)== []):
+	            continue      
+	        text = list(text[0].description)
+	        if(text==[]):
+	            continue
+	        textls[-1].append(text)    
+	        annoString =''
+	        #listOfAnno.append([])
+	        for ch in text:
+	            if ch =='_' or '': 
+	                 annoString+=ch
+	            elif ch == ' ' :
+	                 annoString+=' '
+	            elif ch == '\n':
+	                listOfAnno.append(annoString)
+	                annoString= ''
+	            else:
+	                annoString+=ch
+      
+
+## Data visualization
+
+The final stage was to plot the texts extracted from the images onto a bar chart with the text in x axis and their corresponding number of occurences (word count) in the y axis. I used the following code snippet:
+
+	
+	fig,ax=plt.subplots()
+	fig.set_size_inches(20,20)
+	sns.barplot(x=wordsCount['Key'][:15],y=wordsCount['count'][:15],ax=ax)
+	sns.despine()
+
+I only chose to display the first 15 texts which are shown in teh following diagram:
+
+![alt text](barchart.png)
+
+The full source code is available on the following Github repository:
+
+[Microservice Architecture diagram mining source code](https://github.com/glmess/uol/blob/master/microsrvc_based_apps_mining_with_chart.ipynb)
+
+## Conclusion
+
+Service is the text that has to highest number of ocurrence with a total of 86 occurrences followed by docker which occurences over 60 times and microservice, default and api. Out of the 15 texts however, only 6 of them (listed below) truly represent an architecture components. We can therefore conclude on the basis of the results of the study that these 5 components are highly likely to be part of a microservice-based application.
+
+- Service
+- Docker
+- Microservice
+- API
+- Get
+- Database
 
 ## Limitations
+The methodology used could be improved for it has a number of limitations including the fact that the program did not triage images to only include the ones for the architecture diagrams. As results the data had lots of noise. For instance the diagram shows that the number 8 was capture over 30 times as a text from images and such text does not tell us much about the architecture of microservice-based applications. The same goes for other texts such as delete, namespace, catalog and more.
 
-The non machine learning approach relies on the quality of the dictionnary which needs apart from relying on te keywords fed to it by its owner, it also needs to be maintained manually. As such it may not be accurate. 
-Equally, for both approaches, the corpus used contains too much noise which may be difficult to get rid of completely and it relying on text extracted from source code. The quality of the corpus depends on a very descriptive documentation about the application which is not always done by developers especially for open source applications.
+One way to remove (or at least reduce the noisy data) would be to get the URLs of images directly rather that the entire github repo for each application which has lots of non-relevant images.
 
-## Understanding Microservices composition.
+## Manual mining
+
+In order to address the aforementioned limitatiions related to mining the architecture components, I went through each GitHub repo and looked the architecture diagram of each application and I was able to identify the most common components grouped in 9 mains categories including:
+
+- Infrastructure
+- API Gateway
+- Web layer 
+- Event bus/Message broker
+- Programming languages
+- Communication protocols
+- Service registry/Discovery
+- Frameworks
+
+From **infrastructure** perspective containerization is the most used approach for running microservice-based application with Docker and Docker-compose being the most used. Kubernetes is used to provide management and orchestration. Other flavour such as Openshift are also used but to a lesser extend. Once containerized these applications are run on hyperscale cloud platform such as AWS or Azure (the 2 most popular) and IBM Bluemix for one or two cases.
+
+Almost every application in the sample was designed with an **API Gateway**. Few of the architecture mentioned explicitly which type were used but Zuul API gateway was mentioned 3 times.
+
+The technologies used as **web Layer** were pretty mixed with common web servers such as Apache, tomcat, nginx being used.
+
+The most commonly **message broker** across the 100 applications is RabbitMQ.
+
+In terms of the **communication protocols** the most popular are HTTP RESTful and gRPC. AMQP was mentioned a couple of times as the choice for message queuing communication.
+
+The most widely used **service registry and discovery** is Eureka which basically allows services to registered and be discoverable when they come online so that request can be directed to microservices according to the service they advertise.
+
+In terms of the **framework** spring boot and .NET core were the most popular.
+
+**Programming** languages were pretty mixed with microservices components being written Java, Nodejs, Go, python to name but a few. Similarly, in terms of **databases** flavours all kind of engines were used and were either relational or NoSQL depending on the type of workload.
+
+[Data collected available in GitHub repository](https://github.com/glmess/uol/blob/master/Manual_DataMining_Microsrvc_Apps_v2.xlsx)
 
 **Amazon Web Services approach using Serverless Application Repository (SAR)and Serverless Application Model (SAM)**
 
@@ -560,169 +661,156 @@ Deployment instructions:
 
 - Middleware (Queue system, notification service, integration adapter)
 
-# Commonalities of Microservice-based applications
-To try understand how microservices combined manually together into an application. The goal of this exercise is to identify common patterns and commonly used components in the process of building microservice-based applications in order to automate and simplify the process.
 
-## Methodology
+## Microservices classification: Proof of concept
 
-I worked on a sample of 100 open source applications that were found mainly from GitHub. I then saved the urls into a csv file which I used as input file to a python program that search for images in the GitHub repos of the 100 apps, extract texts from the found images using google vision api and produce a data visualization bar chart that shows the texts that are used the most from the found images.
+In order to automate the composition of microservices to produce an application, one needs to have a way to map out functional requirements to existing microservices. For example if building an eCommerce application for a Retail business, mostly likley a cart and checkout microservices would be required, and as such both could be classified as retail type microservices. I tested two approaches for classifiying microservices by vertical functions: one approach that is based on a user defined dictionnary (which could be expanded into a library) and the other one is based on machine learning. For both approaches I have identified 11 classes including: Automotive, Banking, Education, Energy & Utility, Healthcare, Food and Beverages, Insurance, Law, Media & entertainment, Retail and Transportation.
 
-## Search criteria
+- **User-defined dictionnary**
 
-I used the following keywords:
+This approach consists in creating a dictionary containing most commonly used keywords for each industry. For example: Bank account, credit card, loans for banking. The next step consists in extracting text contents from the source files of the microservices based application and saing it into a single file after doing some data cleaning using a python program and the final step is the actual classification by running the single file against the dictionnary and if keywords are found in the file, the microservice is classified accordingly. For this approach I have added an additional 6 horizontal classes including: Search, Upload, Authentication, Monitoring, logging and Other. This was done so as to allow for a dual classification by vertical as well as horizontal function.
+   
+Code extract for data cleaning:
 
-"Microservice AND application" OR
-"Microservice AND architecture"
+	path = "/Users/gleschen/Downloads/test_raw_file.txt"
+	file=open(path,'r')
+	lines=file.readlines()
+	cummulateString=''
+	for line in lines:
+	#print(newLine)
+	    for char in line:
+	# Exclude the non alphabitical data.
+	        if(char.isalpha()):
+	            cummulateString+=char
+	        elif(char.isspace()):
+	            cummulateString+=''
+	        elif(char.isupper()):
+	            char=char.lower()
+	            cummulateString+=char
+	        else:
+	            cummulateString+=' '
+	            cummulateString+=' '
+	print(cummulateString)
+	#file.close()
+	cummulateString+=' '
 
-I ultimately selected applications that met the above criteria AND in additon had an architecture diagram.
+Removing non meaningful words known as stopwords:
 
-## URLs crawling
+	import sys
+	stop_words = set(stopwords.words('english')) 
+	word_tokens = word_tokenize(cummulateString)  
+	filtered_sentence = [w for w in word_tokens if not w in stop_words]  
+	filtered_sentence = [] 
+	for w in word_tokens: 
+	    if w not in stop_words: 
+	        filtered_sentence.append(w) 
+	print(word_tokens) 
+	print(filtered_sentence) 
+	with open('cleaned_data.txt', 'w') as f:
+	    print(filtered_sentence, file=f)  
+	file.close()
 
-I uploaded the csv (microservice_based_apps.csv) file containing the urls of my sampe of 100 applications into my Gdrive which I then mounted into my python program which I run on Jupyter notebook of Google Colaboratory. 
-I used pandas and Beautifulsoup libraries to read the URLs from the csv file and retrieve the images. See code snippet below:
+Code extract for the classification:
+
+	import ast
+	countDic ={}
+	countDic['Topic']={}
+	countDic['Topic']['H']={}
+	countDic['Topic']['V']={}
+	type_1='V'
+	from keras.preprocessing.text import Tokenizer,text_to_word_sequence
+	with open('/Users/gleschen/Downloads/_huge_Java-Bank-Project') as f:
+	    cleanedData=f.read()
+	    for indxCol in range(0,len(df.columns)):
+	        if(indxCol < 13):
+	            #print(df.columns[indxCol])
+	            countDic['Topic'][type_1][df.columns[indxCol]]=0
+	        else:
+	            type_1='H'
+	            countDic['Topic'][type_1][df.columns[indxCol]]=0
+	        for indx in range(0,len(df.loc[:,df.columns[indxCol]])): 
+	          #print(df.loc[:,df.columns[indxCol]][indx])
+	          if df.loc[:,df.columns[indxCol]][indx] in cleanedData and df.loc[:,df.columns[indxCol]][indx]!='no':
+	            countDic['Topic'][type_1][df.columns[indxCol]]+=1
+	            #print(countDic['Topic'][type_1][df.columns[indxCol]])
+	            print(df.loc[:,df.columns[indxCol]][indx])
+	            cleanedatalist = ast.literal_eval(cleanedData)
+	            t=Tokenizer()
+	            t.fit_on_texts(cleanedatalist)
+	HList=[]
+	VList=[]
+	for key in countDic['Topic']['H']:
+	  if(countDic['Topic']['H'][key]==max(countDic['Topic']['H'].values())):
+	    HList+=[key]
+	for key in countDic['Topic']['V']:
+	  if(countDic['Topic']['V'][key]==max(countDic['Topic']['V'].values())): 
+	    VList+=[key]
+
+The full code can be found in the following GitHub repository:
+
+[Microservice classification based on user-defined dictionary](https://github.com/glmess/uol/blob/master/Microservices_Classification_Without_ML.ipynb)
 
 
-	repo_links = pd.read_csv('microservice_based_apps.csv')
-	images = []
-	#print(repo_links['source'].dtypes)
-	for link in repo_links['source']:
-	    print(link)
-	    html_page = urllib2.urlopen(link)
-	    soup = BeautifulSoup(html_page)
-	    images.append([])
-	    for img in soup.findAll('img'):
-	        #print(img)
-	        images[-1].append(img.get('src'))
-	        
-	print(images)
+- **Machine Learning based classification**
 
-## Reading texts from images
+For this approach I used a combination of each of the 11 classes keywords and the string microservice to search for relevant repositories to for my training and testing dataset. I was able to scrape a total number of 1917 microservices repositories from Github. Just like in the other approach I first extracted the text from all the files of each repository and then converted it to a single in a process known as stemming and lematization using the natural language toolkit library and then tokenized and encoded the resulting contents. The code extract for this process is shown below:
 
-Once the images have been collected, the next step was to read texts from those images. This was done using the following code:
-
-
-	# getting length of list 
-	length = len(images) 
-	#print(length)
-	#print(len(images[0]))
-	textls=[]
-	listOfAnno=[]
-	# Iterating the index 
-	# same as 'for i in range(len(list))' 
-	for i in range(length):
-	    textls.append([])
-	    print(i)
-	    for j in range(len(images[i])):
-	        #img = cv2.imread('images[i]')
-	        if(images[i][j].split('/')[-1]==''):
-	            continue
-	        if(images[i][j].split('/')[0] != 'https:'):
-	            images[i][j]='https://github.com'+images[i][j]
-	    
-	        #file=open([i].split('/')[-1]images,'wb')
-	        #print(j)
-	        try:
-	            file=open(images[i][j].split('/')[-1],'wb')
-	        except:
-	            continue 
-	        file.write(requests.get(images[i][j]).content)
-	        with open(images[i][j].split('/')[-1], 'rb') as image_file:
-	            content = image_file.read()
-	            
-	        image = types.Image(content=content) 
-	        client = vision.ImageAnnotatorClient()
-	        
-	        #print(client)
-	        try:
-	            response = client.text_detection(image=image)
-	            #print(response)
-	        except:
-	            continue
-	        text = response.text_annotations
-	        
-	        #print(type(list(text)))
-	        if(list(text)== []):
-	            continue      
-	        text = list(text[0].description)
-	        if(text==[]):
-	            continue
-	        textls[-1].append(text)    
-	        annoString =''
-	        #listOfAnno.append([])
-	        for ch in text:
-	            if ch =='_' or '': 
-	                 annoString+=ch
-	            elif ch == ' ' :
-	                 annoString+=' '
-	            elif ch == '\n':
-	                listOfAnno.append(annoString)
-	                annoString= ''
-	            else:
-	                annoString+=ch
-      
-
-## Data visualization
-
-The final stage was to plot the texts extracted from the images onto a bar chart with the text in x axis and their corresponding number of occurences (word count) in the y axis. I used the following code snippet:
-
+	#Tokenize ,stemming, lemmatize
+	stem=PorterStemmer()
+	stemmingWordsLs=[]
+	Lemmatizer = WordNetLemmatizer()
+	stemmer = SnowballStemmer("english")
+	lemmatizWordsLs=[]
+	reposContentsTokenList = []
+	reposContentsStrList=[]
+	# Remove Duplications and stemmer
+	for indx in range(0,len(reposContentsList)):
+	        reposContentsTokenList += [list(dict.fromkeys(reposContentsList[indx].split(' ')))]
+	        #print(list(dict.fromkeys(reposContentsList[indx].split(' '))))
+	        reposContentsStrList.append('')
+	        wordsLs=reposContentsTokenList[-1]
+	        #print(wordsLs)
+	        for wordIndx in range(0,len(wordsLs)):
+	            if wordsLs[wordIndx] not in gensim.parsing.preprocessing.STOPWORDS and len(wordsLs[wordIndx]) > 3: 
+	                    lemmatizWord=Lemmatizer.lemmatize(wordsLs[wordIndx])
+	                    stemmingWordsLs+=[stemmer.stem(lemmatizWord)]
+	                    reposContentsStrList[-1]+=stemmingWordsLs[-1]
+	                    if(wordIndx !=len(wordsLs)-1):
+	                        reposContentsStrList[-1]+=' '
+	          
+	        print(wordIndx)
+	        reposContentsTokenList[-1]= stemmingWordsLs
+	        stemmingWordsLs=[]
+	        lemmatizWordsLs=[]
+	vectorizer = TfidfVectorizer(analyzer='word',stop_words='english')
+	X_encoded = vectorizer.fit_transform(cleanedData)
 	
-	fig,ax=plt.subplots()
-	fig.set_size_inches(20,20)
-	sns.barplot(x=wordsCount['Key'][:15],y=wordsCount['count'][:15],ax=ax)
-	sns.despine()
+I then split the dataset in two: 80 per cent for training and 20 per cent for testing using the following code extract:
 
-I only chose to display the first 15 texts which are shown in teh following diagram:
+	xTrain,xTest,yTrain,yTest,repoNaTrain,repoNaTest=train_test_split(X_encoded,Y_encoded,reposNameList,test_size=0.2)
 
-![alt text](barchart.png)
+I trained the dataset using the following algorithms:
 
-The full source code is available on the following Github repository:
+- Support Vector Machine
+- Random Forest
+- Multilayer perceptron
+- XGBoost
+- Naive Bayes
+- Logistic regression
+- Bagging 
 
-[Microservice Architecture diagram mining source code](https://github.com/glmess/uol/blob/master/microsrvc_based_apps_mining_with_chart.ipynb)
+The best accuracy I could achieve with my initial dataset was with Bagging classifier algorithm with 61% for testing and 84% for testing with quite a big gap between the two indicating an over fitting problem. I increased my dataset to 3899 microservices repositories and was able to increase the accuracy to 95% for training and 85% for testing. And while the accuracy improved the overfitting issue remains. I have recently downloaded more data which I'm currently cleaning and hope to run through the model in the coming and hopefully solve the overfitting issue.
 
-## Conclusion
-
-Service is the text that has to highest number of ocurrence with a total of 86 occurrences followed by docker which occurences over 60 times and microservice, default and api. Out of the 15 texts however, only 6 of them (listed below) truly represent an architecture components. We can therefore conclude on the basis of the results of the study that these 5 components are highly likely to be part of a microservice-based application.
-
-- Service
-- Docker
-- Microservice
-- API
-- Get
-- Database
+[ML based microservice classification source code](https://github.com/glmess/uol/blob/master/Microservices%20Classification%20ML%20based.ipynb)
 
 ## Limitations
-The methodology used could be improved for it has a number of limitations including the fact that the program did not triage images to only include the ones for the architecture diagrams. As results the data had lots of noise. For instance the diagram shows that the number 8 was capture over 30 times as a text from images and such text does not tell us much about the architecture of microservice-based applications. The same goes for other texts such as delete, namespace, catalog and more.
 
-One way to remove (or at least reduce the noisy data) would be to get the URLs of images directly rather that the entire github repo for each application which has lots of non-relevant images.
+The non machine learning approach relies on the quality of the dictionnary which needs apart from relying on te keywords fed to it by its owner, it also needs to be maintained manually. As such it may not be accurate. 
+Equally, for both approaches, the corpus used contains too much noise which may be difficult to get rid of completely and it relying on text extracted from source code. The quality of the corpus depends on a very descriptive documentation about the application which is not always done by developers especially for open source applications.
 
-## Manual mining
+# Next Steps
 
-In order to address the aforementioned limitatiions related to mining the architecture components, I went through each GitHub repo and looked the architecture diagram of each application and I was able to identify the most common components grouped in 9 mains categories including:
-
-- Infrastructure
-- API Gateway
-- Web layer 
-- Event bus/Message broker
-- Programming languages
-- Communication protocols
-- Service registry/Discovery
-- Frameworks
-
-From **infrastructure** perspective containerization is the most used approach for running microservice-based application with Docker and Docker-compose being the most used. Kubernetes is used to provide management and orchestration. Other flavour such as Openshift are also used but to a lesser extend. Once containerized these applications are run on hyperscale cloud platform such as AWS or Azure (the 2 most popular) and IBM Bluemix for one or two cases.
-
-Almost every application in the sample was designed with an **API Gateway**. Few of the architecture mentioned explicitly which type were used but Zuul API gateway was mentioned 3 times.
-
-The technologies used as **web Layer** were pretty mixed with common web servers such as Apache, tomcat, nginx being used.
-
-The most commonly **message broker** across the 100 applications is RabbitMQ.
-
-In terms of the **communication protocols** the most popular are HTTP RESTful and gRPC. AMQP was mentioned a couple of times as the choice for message queuing communication.
-
-The most widely used **service registry and discovery** is Eureka which basically allows services to registered and be discoverable when they come online so that request can be directed to microservices according to the service they advertise.
-
-In terms of the **framework** spring boot and .NET core were the most popular.
-
-**Programming** languages were pretty mixed with microservices components being written Java, Nodejs, Go, python to name but a few. Similarly, in terms of **databases** flavours all kind of engines were used and were either relational or NoSQL depending on the type of workload.
+Once I have full understanding of all the possible approaches to microservices composition and identified all the patterns involved, the next steps will be to look at how to simplify and automate the process. I will work on a designing a prototype and test to see the results and iterate until I have proof that it can solve the problem. That would require an extensive litterature review and writing code for the prototyping part. 
 
 #References
 

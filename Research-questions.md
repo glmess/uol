@@ -13,7 +13,9 @@ I intend to answer the following research questions as part of my PhD:
 
 ## References
 
-I have idenfied the following papers as relevant to my research by running an initial seach on Google scholar, Science Direct and SpringerLink using keywords "microservices", "microservices" AND "Taxonomy", "microservice" AND "composition", "service" AND "composition". This is only a high-level list which I plan to iterate on with a more refined search query in order to exclude the least relevant papers.
+I have idenfied the following papers as relevant to my research by running an initial seach on Google scholar, Science Direct and SpringerLink using keywords "microservices", "microservices" AND "Taxonomy", "microservice" AND "composition", "service" AND "composition". I have considered only the papers published from 2017 to date and only included those that I thought from reading their prefaces (and Introduction for some) would help answer the defined research questions.
+
+This is only a high-level list which I plan to iterate on with a more refined search query in order to exclude the least relevant papers.
 
 1. G. Mazlami, J. Cito and P. Leitner, "Extraction of Microservices from Monolithic Software Architectures," 2017 IEEE International Conference on Web Services (ICWS), Honolulu, HI, 2017, pp. 524-531, doi: 10.1109/ICWS.2017.61.
 

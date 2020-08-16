@@ -1,6 +1,6 @@
 ## Research context
 
-Microservices are architecture style for building applications that has grown in popularity as many organizations are moving away from the tradional approach of building, deploying and maintaining applications as a single entity also known as monilithic applications. This perhaps explains why the amount of research on microservices has also increased in the past four to five years. With the amount of knowledge such research has and is continuing to generate, it opens up opportunities for researchers to conduct systematic litterature surveys with the aim to finding answers to questions that stemmed from current knowledge gap on microservices paradigm. One such gap that exists is the lack of a taxonomy for defining, classifying and selecting microservices for building application to fufill given end-users requirements. 
+Microservices are an architecture style for building applications that has grown in popularity as many organizations are moving away from the tradional approach of building, deploying and maintaining applications as a single entity also known as monolithic applications. This perhaps explains why the amount of research on microservices has also increased in the past four to five years. With the amount of knowledge such research has and is continuing to generate, it opens up opportunities for researchers to conduct systematic litterature surveys with the aim to finding answers to questions that stemmed from current knowledge gap on microservices paradigm. One such gap that exists is the lack of a taxonomy for defining, classifying and selecting microservices for building application to fufill given end-users requirements. 
 
 This research aims to producing such taxonomy. To do so will require answering a number research questions outlined in the next section.
 
@@ -30,7 +30,7 @@ The research questions are defined in such a way that there is clear relationshi
 
 ## Significance of the research
 
-The goal of this study is to add to the body of research knowkedge on microservices. One specific area where this research could make a difference is by producing a taxonomy that will guidance for practitioners as they look for better ways to adopt microservices and get value from it. 
+The goal of this study is to add to the body of research knowledge on microservices. One specific area where this research could make a difference is by producing a taxonomy that will serve as guidance to practitioners as they look for better ways to adopt microservices and get value from it. 
 
 Another reason why this research is important is the opportunity for it to contribute towards my PhD research which aims to propose a novel approach to building applications by way of automated composition of microservices. The output of the literature survey will serve as building block for constructing the new approach to microservice composition. 
 

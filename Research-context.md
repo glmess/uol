@@ -67,6 +67,21 @@ I intend to use the following search keywords to form my search queries:
 - ("microservice AND discovery") OR 
 - ("microservice AND deployment")
 
+The below query was generated from Scopus Database:
+
+*TITLE-ABS-KEY ( "microservice composition"  OR  "microservice pattern"  OR  "microservice architecture"  OR  "microservice orchestration"  OR  "microservice choreography"  OR  "microservice automation"  OR  "microservice discovery"  OR  "microservice deployment" )  AND  LANGUAGE ( english )  AND  SUBJAREA ( comp )  AND  ( LIMIT-TO ( PUBYEAR ,  2020 )  OR  LIMIT-TO ( PUBYEAR ,  2019 )  OR  LIMIT-TO ( PUBYEAR ,  2018 )  OR  LIMIT-TO ( PUBYEAR ,  2017 ) )  AND  ( LIMIT-TO ( SUBJAREA ,  "COMP" ) )  AND  ( LIMIT-TO ( LANGUAGE ,  "English" ) )  AND  ( LIMIT-TO ( SRCTYPE ,  "j" ) )*  
+
+
+The below query was generated from Scopus Database:
+	
+*(TI=( "microservice composition" OR "microservice pattern" OR "microservice architecture" OR "microservice orchestration" OR "microservice choreography" OR "microservice automation" OR "microservice discovery" OR "microservice deployment" )  OR  AB=(  "microservice  composition"  OR  "microservice  pattern"  OR  "microservice  architecture"  OR  "microservice  orchestration"  OR  "microservice  choreography"  OR  "microservice  automation"  OR  "microservice  discovery"  OR  "microservice  deployment"  ))   
+AND 
+LANGUAGE:
+  (English)  AND  DOCUMENT 
+TYPES:
+  (Article) 
+Indexes=SCI-EXPANDED, SSCI, A&HCI, CPCI-S, CPCI-SSH, ESCI Timespan=2017-2020*
+
 ## Inclusion & exclusion criteria
 
 **Inclusion criteria**

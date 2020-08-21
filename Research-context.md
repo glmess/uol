@@ -11,7 +11,7 @@ This study will attempt to answer the following research questions.
 
 **RQ1**: What are the existing processes, tools, techniques and frameworks that are used to design microservices?
 
-**RQ2**: What are the appraches for building microservice-based applications and what are their advantages and disadvantages?
+**RQ2**: What are the approaches for building microservice-based applications and what are their advantages and disadvantages?
 
 **RQ3**: What are the best practices and patterns for building microservices-based applications.
 

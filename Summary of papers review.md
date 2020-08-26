@@ -1,4 +1,4 @@
-#Summary of papers review 
+# Summary of papers review 
 This document summarizes my findings following the review of selected studies that discuss on microservices composition or microservices patterns. The aim of this review is to i) have a solid understanding of the field related to my research namely microservice composition ii) come up with research questions that are relevant to the my research.
 
 ## Papers selection process

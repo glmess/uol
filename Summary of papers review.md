@@ -9,7 +9,12 @@ The papers in scope were retrieved by running the following query on ScienceDire
 
 The queries returned 14 results. I then reviewed the abstracts of each the the 14 papers and excluded the ones that did not contain the target keywords in abstract as well as the ones that focus on composition nor patterns of microservices. From this exercise I identify 3 relevant papers and 3 more that were cited in those papers.
 
-## Findings
+# Findings
+
+## Microservice composition
+
+## A microservice composition approach based on the choreography of BPMN fragments
+
 P. Valderas et al. (2020) discuss a microservice composition approach which is based on the choreography of Business Process Model and Notation (BPMN) fragments. The BPMN is an Object Management Group (OMG) standard which allows for a graphical representation (modeling) of business processes. The researchers discuss a new approach to composing microservices based on an event-based choreography of BPMN fragments. This is a three-steps process:
 
 1. Creation of the BPMN model which describes the big picture of the composition process
@@ -102,7 +107,8 @@ Oberhauser (2016) uses the diagram below to illustrate the interactions that tak
 ## Opportunity for future research
 Oberhauser (2016) study demonstrate that microflows are lightweight compared to standard workflows implemented in a BPM suite such as AristaFlow BPM Suite. He acknowledges however, a gap in the approach due to a lack of verification and validation techniques, optimizing resource usage, integrating semantic support in the discovery service, transactional workflow support, support for gateways, supporting compensation and long-running processes, and enhancing the declarative and semantic support and capabilities all of which are areas that could be explored with a goal to enhancing the approach.
 
-
+## Medley: an event-driven lightweight platform for service composition
+Yahia et al. (2016) introduce Medley, an event-driven lightweight platform for service composition. It uses a domain-specific language (DSL) for describing orchestration and a compiler that produces efficient code. Medley is designed to help solve challenges associated to low level service composition laguages such as BPEL that focus more on the technical implementation of the composition rather than on the bsuiness logic.
 
 # Appendix
 
@@ -161,5 +167,6 @@ OUTPUT: an updated BPMN model that represents a microservice composition
 1. Valderas P., Torres V., Pelechano V.,
 A microservice composition approach based on the choreography of BPMN fragments, Information and Software Technology, Volume 127, 2020
 2. Oberhauser R.(2016). Microflows: Lightweight Automated Planning and Enactment of Workflows Comprising Semantically-Annotated Microservices. In Proceedings of the Sixth International Symposium on Business Modeling and Software Design - Volume 1: BMSD, pages 134-143. 
+3. Ben Hadj Yahia E., Réveillère L., Bromberg YD., Chevalier R., Cadot A. (2016) Medley: An Event-Driven Lightweight Platform for Service Composition. In: Bozzon A., Cudre-Maroux P., Pautasso C. (eds) Web Engineering. ICWE 2016. Lecture Notes in Computer Science, vol 9671. Springer
 
 

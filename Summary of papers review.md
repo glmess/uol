@@ -23,17 +23,17 @@ This approach has the advantage that it combines an orchestration-based solution
 P. Valderas et al. (2020) approach supports microservice choreographies that use pub/sub mechanisms to establish collaboration. A microservice is triggered by an event to accomplish its task and once complete, an event is produced, which triggers other microservices waiting for this event to execute their tasks. 
 
 ![alt text](ms-event-based-com.png)
-		Fig.1 Event-based communication among microservices in BPMN 2.
+<p style="text-align: center;">Fig.1 Event-based communication among microservices in BPMN 2.</p>
 
 They illustrate their approach using an an example of an ecommerce scenario that describes an order processing in an online store. This process is supported by four microservices: Customers, Payment, Inventory, and Shipment. The sequence of steps that these microservices must perform when a customer places an order in the online shop are outlined in appendix.
 
 ![alt text](ms-comp-order-proc.png)
-		Fig.2 Microservice composition for the place order process example
+<p style="text-align: center;">Fig.2 Microservice composition for the place order process example</p>
 
 Once the BPMN fragments of a microservice composition have been obtained, each of them must be deployed into the microservice that is responsible for executing it. An event-based choreography of BPMN fragments can be achieved as it is illustrated in Fig. 3. below, each microservice is in charge of executing its corresponding process fragment and informing the others about it.  Once the client places an order in the online store, the client application triggers the event “Process Purchase Order”. The Customers microservice, which is listening to this event (defined through the start event of its pool), reacts executing part of its associated BPMN fragment and pauses its execution to trigger the event “Customer Checked” (see the message intermediate through event). Then, the Inventory microservice, which is listening to this event, executes its BPMN fragment and generates the event that makes the next microservice in the composition to execute the next process fragment. And so on. When the Shipment microservice generates the event “Shipment Managed”, the Customer microservice resumes its tasks and finishes the composition by triggering the event “Order Processed”.
 
 ![alt text](choreography-bpmn-fragments.png)
-		Fig.3 Event-based Microservice Choreography of BPMN fragments
+<p style="text-align: center;">Fig.3 Event-based Microservice Choreography of BPMN fragments</p>
 
 The solution uses an event bus through which microservices communicate asynchronously which effectively helps achieve the decoupling and independence in the architecture. The authors mention some examples of message brokers such as RabbitMQ, Kafka, Fuse which can be used to implement the event bus technology. As for BPMN engines required to execute the BPMN fragments by each participating microservice in the composition process, they provide the following examples: Camunda, Activi, Bonita, Bizagi, jBM.
 
@@ -49,15 +49,20 @@ Fig. 4 depicts the architecture diagram of P. Valderas et al. (2020) approach an
 
 ![alt text](bpmn-arch.png)
 
+<p style="text-align: center;">Fig. 4 Architecture overview</p>
+
 ## Implementation
 
-To implement this microservice composition approach, Valderas et al. (2020) used the following tools:
+To implement this microservice composition approach, Valderas et al. (2020) used the following tools (illustrated in the diagram shown in Fig.5 below):
 
 - NetFlix Eureka as Service discovery microservice whici allows for the registrations of microservices and the access through http
 - RabbitMQ message broker
 - 3 Custom Java libraries were developed by the researchers using Sprint boot framework to serve the purpose of the fragment manager, the Global composition and composition coordinator microservices. These two libraries are made available to every developer who can include them in their sprint boot project by simply using these anotations: @GlobalCompositionManager, @FragmentManager and @CompositionCoordinator for global composition manager, fragment manager and composition coordinator respectively.
 - A web based tool based on bpmn.io open source to implement the composition editor
 - Camunda BPMN engine 
+
+![alt text](bpmn-ms-comp-implemention.png)
+<p style="text-align: center;">Fig.5 Realization of the proposed architecture</p>
 
 ## Opportunity for further research
 While Valderas et al. (2020) managed to demonstrate the efficiency fo their approach compared to ad hoc composition they acknowledge the fact that the approach currently does not account for any potential data interchange between microservice if required as part of the composition process. They reckon that it would enhance the approach it data interchange was clearly defined in the big picture and how this should be managed by the split fragments. 

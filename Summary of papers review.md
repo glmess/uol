@@ -68,6 +68,41 @@ To implement this microservice composition approach, Valderas et al. (2020) used
 While Valderas et al. (2020) managed to demonstrate the efficiency fo their approach compared to ad hoc composition they acknowledge the fact that the approach currently does not account for any potential data interchange between microservice if required as part of the composition process. They reckon that it would enhance the approach it data interchange was clearly defined in the big picture and how this should be managed by the split fragments. 
 Another opportunity where the research see a gap is the ability to keep track of existing composition and reuse them or expand on them to the execution of service tasks in the BPMN model. 
 
+## Microflows: Lightweight Automated Planning and Enactment of Workflows Comprising Semantically-Annotated Microservices
+Valderas et al. (2020) cite as related work the research done by Oberhauser (2016) on workflow orchestration of semantically-annotated microservices. Oberhauser (2016) outlines seven (five main and two optional) principles that guide his Microflows solutions:
+
+1. Semantic Self-description Principle: which supports that microservices have sufficient semantic metadata for autonomous client invocation. This was implemented using JSON-LD and Hydra
+2. Client Agent Principle: which supports the modeling and planning of the goal-oriented actions of microservices in the workflow. This was implemented using Jadex v. 3.0-SNAPSHOT BDI (Belief-Desire-Intention) agents
+3. Gaph of Microservices Principle: which supports the mapping of microservices to nodes in a graph database which was implemented using Neo4j graph database
+4. Microflow as Graph Path Principle: which support that a directed graph of nodes represent a workflow and its sequence of operations of microservices. This is determined using an algorithm such as SPF (Shortest Path First)
+5. Declarative Principle: which supports the requirement spefication of the workflow as delcarative statement such as the starting microservice type or end microservice type and constraints such as sequencing constraints.
+6. Microservice Discovery Service Principle(Optional): to support the registration and discovery of microservice implemented using NetFlix Eureka.
+7. Abstract Microservices Principle (Optional): which supports that microservices with similar functionality could be grouped behind an abstract microservice to receive client requests.
+
+The Microflow lifecycle consists in four phases:
+
+- **The Microservice Discovery stage**: in this stage a microservice discovery service builds agraph of nodes containing the properties of themicroservices and links to other microservices. The researcher illustrates the interactions of this stage with the diagram below:
+
+![alt text](microflow-discovery.png)
+
+- **Microflow Planning stage**: an agent (PlanningAgent) takes the goal and other constraints, creates a plan or microflow. The agents find start and end node using algorithm such as SPF to find a directed path. Tha annotation below shows that anytime the input Pathparameters changes, the agent triggers a planning.
+
+![alt text](ms-planning.png)
+
+- **Microflow Enactment stage**: this is the execution stage of the microflow which happens by invoking each microservice in the order of the plan sequentially or in parallel. This is done by the ExecutionAgent which has three beliefs: pathWrapper, currentNode (points to which node is either active or about to be executed), and path (the planned microflow). The ExecutionAgent's plan is triggered by a change to the path variable (by the PlanningAgent), as shown in the annotation below:
+
+![alt text](enactment.png)
+
+Oberhauser (2016) uses the diagram below to illustrate the interactions that take place during the microflow enactment stage.
+
+![alt text](enactment-interactions.png)
+
+- **Microflow Analysis stage**: In this stage takes place the monitoring, analysis, and mining of execution logs for continual planning improvement
+
+## Opportunity for future research
+Oberhauser (2016) study demonstrate that microflows are lightweight compared to standard workflows implemented in a BPM suite such as AristaFlow BPM Suite. He acknowledges however, a gap in the approach due to a lack of verification and validation techniques, optimizing resource usage, integrating semantic support in the discovery service, transactional workflow support, support for gateways, supporting compensation and long-running processes, and enhancing the declarative and semantic support and capabilities all of which are areas that could be explored with a goal to enhancing the approach.
+
+
 
 # Appendix
 
@@ -123,7 +158,8 @@ OUTPUT: an updated BPMN model that represents a microservice composition
 3. Replace the big picture's pool by the fragment's pool
 
 ## References
-1. Pedro Valderas, Victoria Torres, Vicente Pelechano,
+1. Valderas P., Torres V., Pelechano V.,
 A microservice composition approach based on the choreography of BPMN fragments, Information and Software Technology, Volume 127, 2020
+2. Oberhauser R.(2016). Microflows: Lightweight Automated Planning and Enactment of Workflows Comprising Semantically-Annotated Microservices. In Proceedings of the Sixth International Symposium on Business Modeling and Software Design - Volume 1: BMSD, pages 134-143. 
 
 

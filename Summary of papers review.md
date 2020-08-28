@@ -108,7 +108,31 @@ Oberhauser (2016) uses the diagram below to illustrate the interactions that tak
 Oberhauser (2016) study demonstrate that microflows are lightweight compared to standard workflows implemented in a BPM suite such as AristaFlow BPM Suite. He acknowledges however, a gap in the approach due to a lack of verification and validation techniques, optimizing resource usage, integrating semantic support in the discovery service, transactional workflow support, support for gateways, supporting compensation and long-running processes, and enhancing the declarative and semantic support and capabilities all of which are areas that could be explored with a goal to enhancing the approach.
 
 ## Medley: an event-driven lightweight platform for service composition
-Yahia et al. (2016) introduce Medley, an event-driven lightweight platform for service composition. It uses a domain-specific language (DSL) for describing orchestration and a compiler that produces efficient code. Medley is designed to help solve challenges associated to low level service composition laguages such as BPEL that focus more on the technical implementation of the composition rather than on the bsuiness logic.
+Yahia et al. (2016) introduce Medley, an event-driven lightweight platform for service composition. It uses a domain-specific language (DSL) for describing orchestration and a compiler that produces efficient code. Medley is designed to help solve challenges associated to low level service composition laguages such as BPEL that focus more on the technical implementation of the composition rather than on the bsuiness logic. 
+
+In this approach the developer specifies two types of information via Medley DSL:
+
+- How to assemble the services together
+- The composition logic
+
+![alt text](mdley.png)
+
+Process workflows in the form of pattern of events are mapped to participating services and by providing the above mentioned set of information, the user tells Medley platform which process to invoke based when a specific event occurs. The Medley DSL is passed to the compiler which then generate code that can be deployed in containerized platform or resource constrained edge devices.
+
+The snapshot below taken from Yahia et al. (2016) study shows an example of service composition declaration using Medley DSL
+
+![alt text](medley-dsl.png)
+
+The example above describes a composition that polls a given GitHub repo to check for new high priority issues and upon encountering one or an error, it sends an email to a predefined user. 
+
+The line of code 2 below is the process responsible to emitting tick events on a predefined frequency for the composition to poll the GitHub repo to look for new high priority issues.
+ 
+	process tick = require("Medley/Tick") 
+	
+Medley framework has many advantages including the fact that it is lightweight and its support for data exchange between participating services. Yahia et al. (2016) in their study did a comparative evaluation with other frameworks including Bite, S and WS-BPEL. The selection of these 3 frameworks was based on the fact that they focus on web service composition and propose a language to describe the composition similar to Medley DSL. They looked at the following features in their evaluation: Dynamic typing, Dynamic service selection, Exception handling, Hybrid service support, language extensibility and scoping in terms of the ability to define and use nested blocks and localized variables. Out of the four frameworks, the results of their comparison show that only Medly fully supports the all the aforementioned features. No other framework supports dynamic service selection and only WS-BPEL partially supports hybrid service. 
+
+## Opportunity for future research
+One of the area where Yahia et al. (2016) see an opportunity to further their work is to look at a way of extending the language to specify when a change of a remote resource has to be reported as a new event in the case of polling. They mentioned they are already working on defining new algorithms to efficiently compute diffs of XML or JSON documents though I could not find any reference of such work. They also see an opportunity around data security by looking for ways to prevent composing from exposing sensitive data to unauthorized users.
 
 # Appendix
 

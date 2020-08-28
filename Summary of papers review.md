@@ -13,7 +13,7 @@ The queries returned 14 results. I then reviewed the abstracts of each the the 1
 
 ## Microservice composition
 
-## A microservice composition approach based on the choreography of BPMN fragments
+## Method 1: A microservice composition approach based on the choreography of BPMN fragments
 
 P. Valderas et al. (2020) discuss a microservice composition approach which is based on the choreography of Business Process Model and Notation (BPMN) fragments. The BPMN is an Object Management Group (OMG) standard which allows for a graphical representation (modeling) of business processes. The researchers discuss a new approach to composing microservices based on an event-based choreography of BPMN fragments. This is a three-steps process:
 
@@ -73,7 +73,7 @@ To implement this microservice composition approach, Valderas et al. (2020) used
 While Valderas et al. (2020) managed to demonstrate the efficiency fo their approach compared to ad hoc composition they acknowledge the fact that the approach currently does not account for any potential data interchange between microservice if required as part of the composition process. They reckon that it would enhance the approach it data interchange was clearly defined in the big picture and how this should be managed by the split fragments. 
 Another opportunity where the research see a gap is the ability to keep track of existing composition and reuse them or expand on them to the execution of service tasks in the BPMN model. 
 
-## Microflows: Lightweight Automated Planning and Enactment of Workflows Comprising Semantically-Annotated Microservices
+## Method 2: Microflows: Lightweight Automated Planning and Enactment of Workflows Comprising Semantically-Annotated Microservices
 Valderas et al. (2020) cite as related work the research done by Oberhauser (2016) on workflow orchestration of semantically-annotated microservices. Oberhauser (2016) outlines seven (five main and two optional) principles that guide his Microflows solutions:
 
 1. Semantic Self-description Principle: which supports that microservices have sufficient semantic metadata for autonomous client invocation. This was implemented using JSON-LD and Hydra
@@ -104,10 +104,10 @@ Oberhauser (2016) uses the diagram below to illustrate the interactions that tak
 
 - **Microflow Analysis stage**: In this stage takes place the monitoring, analysis, and mining of execution logs for continual planning improvement
 
-## Opportunity for future research
+## Opportunity for further research
 Oberhauser (2016) study demonstrate that microflows are lightweight compared to standard workflows implemented in a BPM suite such as AristaFlow BPM Suite. He acknowledges however, a gap in the approach due to a lack of verification and validation techniques, optimizing resource usage, integrating semantic support in the discovery service, transactional workflow support, support for gateways, supporting compensation and long-running processes, and enhancing the declarative and semantic support and capabilities all of which are areas that could be explored with a goal to enhancing the approach.
 
-## Medley: an event-driven lightweight platform for service composition
+## Method 3: Medley: an event-driven lightweight platform for service composition
 Yahia et al. (2016) introduce Medley, an event-driven lightweight platform for service composition. It uses a domain-specific language (DSL) for describing orchestration and a compiler that produces efficient code. Medley is designed to help solve challenges associated to low level service composition laguages such as BPEL that focus more on the technical implementation of the composition rather than on the bsuiness logic. 
 
 In this approach the developer specifies two types of information via Medley DSL:
@@ -133,6 +133,43 @@ Medley framework has many advantages including the fact that it is lightweight a
 
 ## Opportunity for future research
 One of the area where Yahia et al. (2016) see an opportunity to further their work is to look at a way of extending the language to specify when a change of a remote resource has to be reported as a new event in the case of polling. They mentioned they are already working on defining new algorithms to efficiently compute diffs of XML or JSON documents though I could not find any reference of such work. They also see an opportunity around data security by looking for ways to prevent composing from exposing sensitive data to unauthorized users.
+
+## Method 4: Beethoven: An Event-Driven Lightweight Platform for Microservice Orchestration
+Monteiro et al. (2018) propose a platform for microservice composition known as Beethoven that combines a reference architecture and a textual orchestration DSL known as Partitur which is built using Xtext, a tool based on the Eclipse Modeling Framework for the development of programming languages and DSL.
+
+### Beethoven reference architecture
+The platform is built on a 4-layer reference architecture as shown in the diagram below.
+
+![alt text](beethoven-arch.png)
+
+- The API layer: Interface endpoint for accessing the service layer
+
+- Service layer: provides a controlled access point to the Database Abstraction and Orchestration layers and implements services that are consumed by the API layer. This layer can help build applications for managing, monitoring, and visualizing the workflow execution.
+
+- Database Abstraction Layer: stores the workflow, task, and event handler definitions. It also records data for workflow instances execution (resource utilization, throughput, and execution time). 
+
+- Orchestration Engine Layer: this is the layer that provides the workflow execution and is made odf 3 main components: Event Channel, Event Processor (Decider, Report, Workflow, and Task), and Instance Work (Task and Workflow). The Event Channel is used as an event bus to exchange messages among Event Processor components and can be implemented as message queues, message topics, or a combination of both. The Event Processor processes events and publish another event to the Event channel to notify success or failure. An Event Processor component can be bound to a set of Instance Worker components, which are responsible for performing a specific activity (e.g., decision, reporting, workflow, or task) demanded by the Event Processor component to which it is bound.
+
+### Partitur - Beethoveen orchestration DSL
+
+Partitur is a textual DSL for defining microservices orchestration in Beethoven built on Xtext which is an Eclipse Modeling Framework for the development of programming languages and DSLs. 
+
+Partitur is made of 3 main elements:
+
+- Workflow: an abstraction of a business process that is executed in a distributed manner among different microservices. A Partitur workflow is composed of: (i) a unique identifier that represents the workflow name; (ii) a set of tasks that represent each business task or activity that is possible to be performed during a business process execution; and (iii) a set of event handlers that enclose all the business constraints that must be satisfied.
+
+- Task: an atomic and asynchronous operation responsible for performing an action that manages a microservice. It contains: (i) a unique identifier that represents the task name and (ii) an HTTP request, which is composed of the main four HTTP methods (i.e., DELETE, GET, POST, and PUT).
+
+- Event Handler: based on Event if Condition do Action (ECA). Event handlers are composed of: (i) a unique identifier that represents the event handler name; (ii) an event identifier that is used to define which event must be listened and captured during the workflow execution; (iii) a set of conditions representing boolean parameters that must be true in order to process an event; and (iv) a set of commands defining the actions that should be performed on the occurrence of an event that satisfies the specified conditions.
+
+The example below represents a specification of a process (new consumer) that Monteiro et al. (2018) used in their study for the realization of their microservice composition approach.
+
+![alt text](partitur.png)
+
+To implement Beethoven, Monteiro et al. (2018) used the following technologies: ava, Spring Cloud Netflix (Spring Cloud Eureka for service discovery, Spring Cloud Ribbon client-side load-balacing, and Spring Cloud Hystrix), and Akka.
+
+## Opportunity for further work
+Monteiro et al. (2018) see a gap on reliability, flexibility, and resilience of the proposed platform and plan on conducting further work to add self-adaptation mechanisms.
 
 # Appendix
 
@@ -191,6 +228,8 @@ OUTPUT: an updated BPMN model that represents a microservice composition
 1. Valderas P., Torres V., Pelechano V.,
 A microservice composition approach based on the choreography of BPMN fragments, Information and Software Technology, Volume 127, 2020
 2. Oberhauser R.(2016). Microflows: Lightweight Automated Planning and Enactment of Workflows Comprising Semantically-Annotated Microservices. In Proceedings of the Sixth International Symposium on Business Modeling and Software Design - Volume 1: BMSD, pages 134-143. 
-3. Ben Hadj Yahia E., Réveillère L., Bromberg YD., Chevalier R., Cadot A. (2016) Medley: An Event-Driven Lightweight Platform for Service Composition. In: Bozzon A., Cudre-Maroux P., Pautasso C. (eds) Web Engineering. ICWE 2016. Lecture Notes in Computer Science, vol 9671. Springer
+3. Ben Hadj Yahia E., Réveillère L., Bromberg YD., Chevalier R., Cadot A. (2016) Medley: An Event-Driven Lightweight Platform for Service Composition. In: Bozzon A., Cudre-Maroux P., Pautasso C. (eds) Web Engineering. ICWE 2016. Lecture Notes in Computer Science, vol 9671. 
+4. Monteiro D., Gadelha R., Maia P.H.M., Rocha L.S., Mendonça N.C. (2018) Beethoven: An Event-Driven Lightweight Platform for Microservice Orchestration. In: Cuesta C., Garlan D., Pérez J. (eds) Software Architecture. ECSA 2018. Lecture Notes in Computer Science, vol 11048. 
+5. Indrasiri K., Siriwardena P. (2018) Integrating Microservices. In: Microservices for the Enterprise. Apress, Berkeley, CA.
 
 

@@ -285,6 +285,59 @@ Below are some of the microservice development frameworks, integration framework
 - *Node, Go, Rust, Python and Ballerina*
 - *Workflow solution engines*: Zeebe, Netflix Conductor, Apache Nifi, AWS Step Functions, Spring Cloud Data Flow, and Microsoft Logic Apps
 
+# Appendix
+
+## Order processing process
+
+1. Customers microservice checks the customer data and registers the request. If the customer data is not valid then the customer is informed and the process of the order is cancelled. On the contrary, if customer data is valid the control flow is transferred to the Inventory microservice.
+2. The Inventory microservice checks the availability of the ordered items. If there is not enough stock to satisfy the order, the process of the order is cancelled and the customer is informed. On the contrary, the items are booked and the control flow of the process is transferred to the Payment microservice.
+3. The Payment microservice provides the customer with different alternatives to proceed with the payment of the order as well as to change payment details. Next, the microservice processes the payment.
+
+Depending on the result of the payment two different sequences of steps are performed.
+
+If the payment fails:
+
+- The Inventory microservices releases the booked items and the process of the order is cancelled.
+
+If the payment is successful, the following three steps are performed:
+
+- The Inventory microservices update the stock of the purchased items and the control flow is transferred to the Shipping microservice.
+
+- The Shipping microservice creates a shipment order and assign it to a driver and the control flow is transferred to the Customer microservice.
+
+- The Customer microservice updates the customer record and informs the customer about the finalization of the process.
+
+## Algorithm for splitting BPMN model into fragments
+
+INPUT: a BPMN model that represents a microservice composition
+
+OUTPUT: a set of BPMN fragments
+
+1. For each microservice pool in the BPMN model:
+2. A new BPMN model is created;
+3. The pool is copied in the new model;
+4. A new black-box pool is created to represent an event bus;
+5. For each message flow:
+6. If the microservice pool is the source: connect the flow target to the event bus pool;
+7. If the microservice pool is the target: connect the flow source to the event bus pool;
+8. If the microservice pool has the start message event which starts the composition:
+9. A new message flow is added between the event bus pool and the start message event;
+10. If the microservice pool has the end message event which finishes the composition:
+11. A new message flow is added between the end message event and the event bus pool;
+
+## Algorithm for integrating BPMN fragment into the big model
+
+INPUTS:
+
+big picture: a BPMN model that represents a microservice composition
+fragment: a BPMN model that includes a microservice pool together with an event-bus pool
+ 
+OUTPUT: an updated BPMN model that represents a microservice composition
+
+1. Get the microservice pool from the fragment
+2. Find this microservice pool in the big picture
+3. Replace the big picture's pool by the fragment's pool
+
 ## References
 1. Valderas P., Torres V., Pelechano V.,
 A microservice composition approach based on the choreography of BPMN fragments, Information and Software Technology, Volume 127, 2020

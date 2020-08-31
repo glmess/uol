@@ -238,6 +238,7 @@ The results show that the main researh area are around system quality and cloud 
 
 ![alt text](pattern.png)
 <p style="text-align: center;">microservice patterns</p>
+
 ### Opportunity for future research
 This systematic mapping study shows the current snaphot of research in the field of microservice architecture which helps research understand current research trends and more significantly where there are are opportunities to contribute to the field. From the results of Francesco et al. (2019) we can see that very little has been done around security, benchmarking, real-time communication as well as testing which means researchers could frame their studies around those target problems.
 

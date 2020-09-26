@@ -105,3 +105,4 @@ Indexes=SCI-EXPANDED, SSCI, A&HCI, CPCI-S, CPCI-SSH, ESCI Timespan=2017-2020*
 - Studies that cover web services composition
 - Studies related to cloud computing or containers but do not feature microservices architecture, patterns, design or deployment
 - Anything that does not satisfy the above inclusion criteria implies exclusion
+****

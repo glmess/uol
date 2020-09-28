@@ -21,7 +21,7 @@ After reading the above papers I noted a number of themes that form the basis of
 1. Discuss microservice composition
 2. Describe microservice composition method
 3. Discuss microservice orchestration, choreography or both
-4. Paper written from 2017 or later
+4. Paper written from 2016 or later
 5. Peer-reviewed
 6. English language only
 
@@ -32,4 +32,23 @@ After reading the above papers I noted a number of themes that form the basis of
 3. Non peer-reviewed
 4. Language other than english
 
-On running the query string for RQ1 ("microservice\*" OR "micro-service\*"  OR  "micro service\*" ) AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability"  OR  "nest\*")
+On running the query string for RQ1 *("microservice\*" OR "micro-service\*"  OR  "micro service\*" ) AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability"  OR  "nest\*")*
+
+I found total of 1168 papers. The breakdown by database is shown below.
+
+- Scopus: 324 papers  
+- ACM Digital Library: 186 papers  
+- Science Direct: 612 papers  
+- Google Scholar: 46
+
+By searching within the results of the queries, I was able to found everytime the 5 benchmark papers.
+
+***RQ2 - What are the emerging patterns or reference 
+architectures from current approaches to microservices composition***
+
+This research question is already tackled partially by the work of Taibi et al (2018) whom conducted a system mapping study on architectural pattterns of microservices. They focus specifically on client to microservices communication, data storage patterns as well as deployment strategies patterns. The gap that my research aim to fill here is look into pattern of microservices orchestration as well as inter-microservice communication, data exchange between microservice and some security aspects of microservice architectural patterns.
+
+While a gap has been identified in Taibi et al (2018) study, the are similarities with RQ2 hence I have used Taibi's work as reference paper for validating my query.
+
+The paper has been cited 81 times so through forward snowballing, I reviewed the all the 81 papers and manually checked against the inclusion and exclusion criteria
+

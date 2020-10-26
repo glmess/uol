@@ -5,25 +5,31 @@ I started by reviewing existing literature to have an understanding of the state
 
 ***RQ1: What are the existing approaches to microservices composition ?***
 
-For RQ1, the reference paper that I selected is "A microservice composition approach based on the choreography of BPMN fragments by Valderas et al (2020). From applying snowballing I ended up with a list of 5 papers. I could only look examine papers cited in the reference paper in other words backward snowballing, since the paper was published in 2020 it has not been cited yet hence we could not conduct any forward snowballing.
+For RQ1, the reference paper that I selected is "Improving entity linking with ontology alignment for Semantic microservices composition" by Salvadori et al (2017). From applying snowballing I ended up with a list of 9 papers out of which 2 papers that cite the reference paper (forward snowballing), and 7 other papers from the references (backward snowballing).
 
 1. Improving Entity Linking with Ontology Alignment for Semantic Microservices Composition
-2. A Systematic Literature Review on Composition of Microservices through the Use of Semantic Annotations: Solutions and Techniques 
-3. Hybrid composition of microservices with eucaliptool
-4. Medley: An event-driven lightweight platform for service composition
-5. Building orchestrated microservice systems using declarative business processes
-6. Beethoven: An event-driven lightweight platform for microservice orchestration
+2.  An ontology alignment framework for data-driven microservices
+3. A Systematic Literature Review on Composition of Microservices through the Use of Semantic Annotations
+4. Microservices: A Language-Based Approach
+5. Beethoven: An Event-Driven Lightweight Platform for Microservice Orchestration
+6. Building orchestrated microservice systems using declarative business processes
+7. Microflows: Automated Planning and Enactment of Dynamic Workflows Comprising Semantically-Annotated Microservices
+8. Microflows: Enabling agile business process modeling to orchestrate semantically-annotated microservices
+9. Microservice-oriented Approach to Automation of Distributed Scientific Computations
+10. Automated tools for the development of microservice compositions for hybrid scientific computations
 
 After reading the above papers I noted a number of themes that form the basis of the inclusion and exclusion criteria for RQ1 outlined below:
 
 **Inclusion criteria:**
 
-1. Discuss microservice composition
-2. Describe microservice composition method
-3. Discuss microservice orchestration, choreography or both
-4. Paper written from 2016 or later
-5. Peer-reviewed
-6. English language only
+1. Papers that discuss microservice composition
+2. Papers that describe microservice composition method
+3. Papers that discuss microservice orchestration, choreography or both
+4. Papers published from 2017 or later
+5. Peer-reviewed papers
+6. Papers that are in English language only
+
+After removing duplicates I was left with 1009 papers.
 
 **Exclusion criteria:**
 
@@ -32,23 +38,50 @@ After reading the above papers I noted a number of themes that form the basis of
 3. Non peer-reviewed
 4. Language other than english
 
-On running the query string for RQ1 *("microservice\*" OR "micro-service\*"  OR  "micro service\*" ) AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability"  OR  "nest\*")*
+On running the query string for RQ1 *("microservice\*" OR "micro-service\*"  OR  "micro service\*" ) AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability")*
 
-I found total of 1168 papers. The breakdown by database is shown below.
+I found total of 1062 papers. The breakdown by database is shown below.
 
-- Scopus: 324 papers  
-- ACM Digital Library: 186 papers  
-- Science Direct: 612 papers  
-- Google Scholar: 46
+- Scopus: 286 papers  
+- ACM Digital Library: 296 papers  
+- Science Direct: 480 papers  
 
-By searching within the results of the queries, I was able to found everytime the 5 benchmark papers.
+By searching within the results of the queries, I was able to found everytime the 10 benchmark papers.
 
-***RQ2 - What are the emerging patterns or reference 
-architectures from current approaches to microservices composition***
+***RQ2 - What are the patterns, reference 
+architectures and best practices for building microservices based systems?***
 
 This research question is already tackled partially by the work of Taibi et al (2018) whom conducted a system mapping study on architectural pattterns of microservices. They focus specifically on client to microservices communication, data storage patterns as well as deployment strategies patterns. The gap that my research aim to fill here is look into pattern of microservices orchestration as well as inter-microservice communication, data exchange between microservice and some security aspects of microservice architectural patterns.
 
 While a gap has been identified in Taibi et al (2018) study, the are similarities with RQ2 hence I have used Taibi's work as reference paper for validating my query.
 
-The paper has been cited 81 times so through forward snowballing, I reviewed the all the 81 papers and manually checked against the inclusion and exclusion criteria
+The paper has been cited 81 times so through forward snowballing, I reviewed the all the 81 papers and manually checked against the inclusion and exclusion criteria outlined below:
 
+**Inclusion criteria**
+
+1. Papers that discuss microservice architecture
+2. Papers discuss how microservices communicate and exchange data
+3. Papers published from 2017 or later
+4. Peer-reviewed papers
+5. Papers that are in English language only
+
+**Exclusion criteria**
+
+1. Papers that do not discuss microservices
+2. Papers that discuss microservices but do not cover the architecture 
+3. Describe web service composition method
+4. Non peer-reviewed papers
+5. Papers in a language other than english
+6. Papers published before 2017
+
+The following query is used to search for the relevant papers:
+
+*("microservice" OR "micro-service" OR " micro service") AND ("architecture" OR "pattern" OR "artifact" OR "building block" OR "component")*
+
+I found 2533 papers in total. The number of papers per selected database is shown below.
+
+Scopus: 1235   
+ACM Digital Library: 628  
+Science Direct: 670 
+
+After removing duplicates it was reduced to 2296 papers.

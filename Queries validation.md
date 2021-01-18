@@ -25,7 +25,7 @@ After reading the above papers I noted a number of themes that form the basis of
 1. Papers that discuss microservice composition
 2. Papers that describe microservice composition method
 3. Papers that discuss microservice orchestration, choreography or both
-4. Papers published from 2017 or later
+4. Papers published from 2016 or later
 5. Peer-reviewed papers
 6. Papers that are in English language only
 
@@ -38,7 +38,8 @@ After removing duplicates I was left with 1009 papers.
 3. Non peer-reviewed
 4. Language other than english
 
-On running the query string for RQ1 *("microservice\*" OR "micro-service\*"  OR  "micro service\*" ) AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability")*
+On running the query string for RQ1 *
+*
 
 I found total of 1062 papers. The breakdown by database is shown below.
 
@@ -85,3 +86,8 @@ ACM Digital Library: 628
 Science Direct: 670 
 
 After removing duplicates it was reduced to 2296 papers.
+
+Updated query:
+*("microservice" OR "micro-service"  OR  "micro service" ) AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability") AND ("framework" OR "architecture")*
+
+*("microservice" OR "event-driven"  OR  "micro service") AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability") AND ("framework" OR "architecture")*

@@ -121,7 +121,17 @@ With regard to the databases, we identified 4 mains electronic data sources that
 
 The selected databases and in particular scopus and Google scholar have the advantage that they index publications (articles and papers) from the most popular publishers in software engineering field including IEEE, ACM and Elsevier.
 In terms of defining the search boundaries, we only target peer-reviewed papers to ensure we included papers of high quality in our systematic review. We also limited our search results for the period between 2016 and 2021 to ensure that we worked on the most recent papers. The choice of 2016 as start date was motivated by the fact that most of the literature on service composition prior to 2016 focused on web services which we did not want to include in our SLR.
-The search strings were derived from the RQs which were formalized using the PICO (population, intervention, comparison, outcome) model (Kitchenham et al, 2007). For our RQs the population is mapped to microservices, while service composition represents the intervention
+The search strings were derived from the RQs which were formalized using the PICO (population, intervention, comparison, outcome) model (Kitchenham et al, 2007). For our RQs the population is mapped to microservices, while service composition represents the intervention.
+
+While we discuss the features of the composition techniques and their advantages in this study, we don’t necessarily compare techniques against one another. In terms of the outcome, it is mapped to a composite service made of microservices. The main components used to derive our search string are Population and Intervention while the remaining 3 (comparison, outcome and context) are only for interest for extracting data. To ensure that we captured all the relevant papers for our study, we also used synonyms and variations of spellings of the keywords for our search (e.g., microservice and micro-service) including the usage of wildcards for databases that supports its usage, and connected them using bolean OR and “AND”
+
+We started the search with the following search query: 
+
+\emph{(“microservice” OR “micro-service” OR “micro service”) AND (“composition” OR “choreography” OR “orchestration”) AND (“framework” OR “architecture”)}
+
+We used our 25 seed papers to test our query and after few iterations and some tweaking of our query by adding an additional keyword (pattern) we ended up with our most optimized and final search query which we validated for running it on Scopus checked that all our 25 seed papers were successfully retrieved.
+
+
 
 
 \section{Service composition techniques \& Frameworks}

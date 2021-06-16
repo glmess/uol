@@ -91,3 +91,10 @@ Updated query:
 *("microservice" OR "micro-service"  OR  "micro service" ) AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability") AND ("framework" OR "architecture")*
 
 *("microservice" OR "event-driven"  OR  "micro service") AND ( "composition"  OR  "choreography"  OR  "orchestration"  OR  "composability") AND ("framework" OR "architecture")*
+
+Speak to PSA Mgr Nordics
+
+Exceed
+Meets
+Needs improvement
+

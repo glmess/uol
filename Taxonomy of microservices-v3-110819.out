@@ -1,0 +1,18 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Related work}{}% 2
+\BOOKMARK [1][-]{section.3}{Research questions}{}% 3
+\BOOKMARK [1][-]{section.4}{Methodology}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Search strategy}{section.4}% 5
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Sample of microservices selection}{subsection.4.1}% 6
+\BOOKMARK [2][-]{subsection.4.2}{Classification method}{section.4}% 7
+\BOOKMARK [1][-]{section.5}{Taxonomy of microservices. A new framework}{}% 8
+\BOOKMARK [2][-]{subsection.5.1}{RQ1 - Functional attributes of microservices}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.2}{RQ2 - Mapping of functional to technical attributes of microservices}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.3}{RQ3 - Classifying and selecting microservices}{section.5}% 11
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Non-functional dimensions}{subsection.5.3}% 12
+\BOOKMARK [1][-]{section.6}{Description of the taxonomy}{}% 13
+\BOOKMARK [1][-]{section.7}{Classification of microservice example using the taxonomy}{}% 14
+\BOOKMARK [1][-]{section.8}{Limitations}{}% 15
+\BOOKMARK [1][-]{section.9}{Summary and future work}{}% 16
+\BOOKMARK [1][-]{section.10}{References}{}% 17
+\BOOKMARK [1][-]{appendix.A}{Sample of microservices}{}% 18

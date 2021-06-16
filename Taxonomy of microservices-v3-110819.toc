@@ -1,0 +1,39 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {ngerman}{}
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Related work}{5}{section.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Research questions}{7}{section.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Methodology}{8}{section.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1}Search strategy}{8}{subsection.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.1.1}Sample of microservices selection}{9}{subsubsection.4.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2}Classification method}{10}{subsection.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Taxonomy of microservices. A new framework}{11}{section.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}RQ1 - Functional attributes of microservices}{11}{subsection.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}RQ2 - Mapping of functional to technical attributes of microservices}{14}{subsection.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3}RQ3 - Classifying and selecting microservices}{16}{subsection.5.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.3.1}Non-functional dimensions}{17}{subsubsection.5.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Description of the taxonomy}{19}{section.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Classification of microservice example using the taxonomy}{22}{section.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}Limitations}{23}{section.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}Summary and future work}{25}{section.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10}References}{26}{section.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Sample of microservices}{29}{appendix.A}%

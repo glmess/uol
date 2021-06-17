@@ -63,6 +63,8 @@ The analysis of the composition approaches based on Garriga's taxonomy of micros
 
 ![MacDown Screenshot](garrigataxonomy.png)
 
+![MacDown Screenshot](garriga-taxonomy-mappy.png)
+
 While these results help gather useful statistics on the how the framework maps to the taxonomy, it is worth clarifying that this is just an observation based on statistics from the data gathered in this SLR and the studies do not provide enough details to generalise conclusions. For instance on the choice of data store, it is difficult to ascertain that the choice of SQL is related to the type of use case or is generically best suited to the composition by design, or whether the preference for NetFlix products is related to their capabilities or because they are open source technologies. Only further studies would help generalise the results and this is beyond the scope of this SLR.
 
 ## Results of the analysis of microservices patterns

@@ -1,4 +1,4 @@
-# PhD - End of Year 1 Probation Report
+# PhD - Probation Report, Georges L. M. Essomba, June 2021
 
 This report summarises the work that I have undertaken in the first year of my PhD research and is designed to demonstrates to the probabtion panel that I have made sufficient progress and I am on track to complete my PhD within the maximum time (October 2024) allowed by the University. it is organized as follows:
 
@@ -8,6 +8,7 @@ This report summarises the work that I have undertaken in the first year of my P
 - A summary of the analysis of microservices patterns 
 - Examples of microservices composition 
 - Limitations & Challenges
+- Contribution to the knowledge
 - Next steps
 
 ## Research problem
@@ -44,6 +45,23 @@ I looked at microservices composition methods from three lenses: i. How the coll
 
 
 **RQ1**: The chart below shows that below shows that 41% of the selected papers use orchestration as a method for composing microservices, making it the most popular of all the methods in the selected studies. The second most used method is choreography which accounts for 20% of the papers. The study shows that 11% of the papers use a hybrid approach which is a combination of orchestration and choreography. Another method known as decentralized process is also used as a way of composing microservices albeit to lesser extend as it only accounts for 2% of our selected studies. The remaining 26% of the papers are classified as unspecified as they use neither orchestration, nor choreography or both (hybrid).
+
+For finer grained classification, I further broke down the aforementioned composition methods in subcategories by looking at them from the perspective of inter-microservices communication, and whether the orchestration or choreography is done dynamically. In other words, if it makes the composition decisions at runtime and takes into account any change that occur in one or more of the atomic microservices; or that the composition relies on a predefined workflow or static model that would require being updated manually whenever a change occur. 
+
+![MacDown Screenshot](mce-comp-by-method.png)
+
+The figure above shows 5 sub-categories (plus 1 N/A which is for papers for which the author does not specifically mention the method is used):
+
+- Event-driven
+- Request-response
+- Sync/async
+- Dynamic workflow
+- Manual or static workflow
+- N/A
+
+31\% percent  use a dynamic workflow. S7 that describe Microflows, which is a framework for orchestrtating semantically annotated microservices that uses a dynamically constructed workflows together with agents to orchestrate microservices which help avoid the burden of a designing and maintaining a manual worflow which cannot adapt to changes. 
+
+The other categories uses either synchronous or asynchronous with 23\% of the studies in scope. Other methods include static modelling or even driven both at 17\%  of the papers in our sample. Examples of even-driven composition methods frameworks include Medley, Beethoven and the choreopgraphy of BPMN. One communication approach that is less used (9\% of included papers)as the graph demonstrates are request-reponse. An example is s4 which describes a choreography approach to microservices composition that uses labelled transition systems (LTS) to exchange messages directly between microservices.
 
 ![MacDown Screenshot](mscompcore.png)
 
@@ -160,7 +178,6 @@ This approach uses a decentralized composition similar to a choreography and is 
 ![MacDown Screenshot](tx-comp.png)
 
 
-
 ## Limitations & challenges
 
 One of the limitations of the frameworks found in the SLR is that the majority are theoritical with no practical example that could have been useful for testing. The other challenge which is tightly related to the first one is that there is little or no industrialisation of the frameworks which meant that I had to base my investigation on open source microservices found in GitHub in order to have a sizeable sample to conduct my analysis and uncover patterns that could be generalize.
@@ -168,6 +185,20 @@ One of the limitations of the frameworks found in the SLR is that the majority a
 In terms of the challenges, it has been a very difficult year with the covid-19 pandemic which has had an impact on my research as I struggled to adjust with the new way of life. As a mitigation action, I requested my study mode to be changed to part-time to allow me have more time to complete my PhD and thankfully the request has been granted and my date of completion has been adjusted to October 2024. 
 
 In addition to the aforementioned, I also faced some other family challenges as my wife underwent a major surgery towards the end of last year and needed 3 months to recover, which meant I had to take care of our children as well as taking care of her. While I had taken some time off from my research to be able to attend to the family, it has slowed down my progress. To add to that we had to move house in March which caused me some inconvenience as I was without Internet for several weeks. All the above have prevented me from meeting regularly with my supervisors. As a mitigation action, I intend to improve my communication with my supervisors and use other channel such as the calling the school (or have someone to do so on my behalf) office to notify them when I have I have an issue and I am not in a position to send an email. I'm also hoping that as the lockdown measures begin to ease, I will be able to resume face to face meetings with my supervisors as well as collaborate with other PhD students.
+
+
+## Contribution to the knowledge 
+I have submitted manuscript of the SLR to Array journal (Elsevier) and the initial reviewer has recommended that my submission be considered for publication subject to making the recommended changes, which I'm currently working on and plan to submit a revised version next month. Please see an extract of the reviewer's  feedback below:
+
+*Reviewer: This paper presents a systematic literature review (SLR) on microservices composition. It also clarifies the current approaches to microservices composition and the frameworks used for composing microservices. As an overall impression, this work is solid with necessary elements for a SLR. I think this manuscript should be considered for the publication in this journal after revision. Some of my concerns:*
+
+*[1] This paper answers the question of "what are the current approaches to microservices composition" from the management and the core composition perspectives. The author should explain the reason.*
+
+*[2] The author should avoid blocks of text in sections 2.1, 4.2 and 7, but split the text up into paragraphs for readability.*
+
+*[3] The full name of SLR should be given at the first time it appears on the manuscript.*
+
+*[4] I think the opportunities and open challenges on microsevices composition (for example, the new challenges under the emerging computational paradigms such as fog/edge computing ) should be discussed at the end of the manuscript for a complete SLR."*
 
 # Next Steps
 
